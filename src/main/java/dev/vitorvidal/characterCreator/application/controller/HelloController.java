@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.controller;
+package dev.vitorvidal.characterCreator.application.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

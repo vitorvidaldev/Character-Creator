@@ -1,12 +1,13 @@
-package dev.vitorvidal.characterCreator.model;
+package dev.vitorvidal.characterCreator.domain.ability;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import dev.vitorvidal.characterCreator.domain.character.Character;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Ability {
+public class AbilityScore {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,7 +18,10 @@ public class Ability {
     private int wisdom;
     private int charisma;
 
-    public Ability(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+    @OneToMany(mappedBy = "ability_score")
+    private static final List<Character> characters = new ArrayList<>();
+
+    public AbilityScore(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -26,7 +30,7 @@ public class Ability {
         this.charisma = charisma;
     }
 
-    public Ability() {
+    public AbilityScore() {
 
     }
 

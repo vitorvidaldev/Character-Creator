@@ -13,5 +13,4 @@ public enum Class {
     SORCERER,
     WARLOCK,
     WIZARD,
-
 }
