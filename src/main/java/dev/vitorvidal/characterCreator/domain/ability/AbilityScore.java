@@ -1,15 +1,12 @@
 package dev.vitorvidal.characterCreator.domain.ability;
 
-import dev.vitorvidal.characterCreator.domain.character.Character;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
+@Table(name = "ability_score")
 public class AbilityScore {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int strength;
     private int dexterity;
@@ -17,9 +14,9 @@ public class AbilityScore {
     private int intelligence;
     private int wisdom;
     private int charisma;
-
-    @OneToMany(mappedBy = "ability_score")
-    private static final List<Character> characters = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "ability_score")
+//    private static final List<Character> characters = new ArrayList<>();
 
     public AbilityScore(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.strength = strength;
