@@ -1,1 +1,0 @@
-insert into AbilityScore (charisma, constitution, dexterity, intelligence, strength, wisdom, id) values (10, 10, 10, 10, 10, 10, 10);
