@@ -11,6 +11,8 @@ services:
     - "5432:5432"
     volumes:
     - db:/var/lib/postgresql/data
+    networks:
+    - bridge
 
   adminer:
     image: adminer:4
@@ -18,5 +20,18 @@ services:
     ports:
     - "8090:8080"
 
+  grafana:
+    image: grafana/grafana:8.0.2-ubuntu
+    ports:
+    - "9000:3000"
+    volumes:
+    - grafana-data:/var/lib/grafana
+    networks:
+    - bridge
+
 volumes:
   db:
+  grafana-data:
+
+networks:
+  bridge:
