@@ -1,11 +1,9 @@
 package dev.vitorvidal.characterCreator.domain.repository;
 
 import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public interface AbilityScoreRepository extends CrudRepository<AbilityScore, UUID> {
+public interface AbilityScoreRepository extends JpaRepository<AbilityScore, String> {
 }

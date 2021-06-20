@@ -1,15 +1,20 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
 public class AbilityScore {
     @Id
-    @GeneratedValue
+    @Type(type = "pg-uuid")
     private UUID id;
+
+    public void setId() {
+        this.id = UUID.randomUUID();
+    }
 
     private int strength;
     private int dexterity;
@@ -17,9 +22,6 @@ public class AbilityScore {
     private int intelligence;
     private int wisdom;
     private int charisma;
-
-    //    @OneToMany(mappedBy = "ability_score")
-    //    private static final List<Character> characters = new ArrayList<>();
 
     public AbilityScore() {
     }

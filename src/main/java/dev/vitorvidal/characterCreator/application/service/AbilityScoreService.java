@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AbilityScoreService {
@@ -24,10 +23,11 @@ public class AbilityScoreService {
     }
 
     public AbilityScore setAbilityScore(AbilityScore abilityScore) {
+        abilityScore.setId();
         return abilityScoreRepository.save(abilityScore);
     }
 
-    public ResponseEntity<AbilityScore> getAbilityScoreById(UUID id) {
+    public ResponseEntity<AbilityScore> getAbilityScoreById(String id) {
         Optional<AbilityScore> byId = abilityScoreRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
@@ -35,7 +35,7 @@ public class AbilityScoreService {
         return ResponseEntity.ok(byId.get());
     }
 
-    public void deleteAbilityScore(UUID id) {
+    public void deleteAbilityScore(String id) {
         abilityScoreRepository.deleteById(id);
     }
 

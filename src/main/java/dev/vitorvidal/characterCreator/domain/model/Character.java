@@ -1,14 +1,15 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
 @Entity
 public class Character {
     @Id
-    @GeneratedValue
+    @Type(type = "pg-uuid")
     private UUID id;
 
     private String name;
@@ -16,11 +17,7 @@ public class Character {
     private Race race;
     private Class characterClass;
 
-//    @ManyToOne
-//    @JoinColumn(name = "ability_score_id")
-//    private AbilityScore abilityScore;
-
-    public Character(Race race, Class characterClass, AbilityScore abilityScore, String name, int age) {
+    public Character(Race race, Class characterClass, String name, int age) {
         this.race = race;
         this.characterClass = characterClass;
         this.name = name;

@@ -5,8 +5,6 @@ import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/ability")
 public class AbilityScoreController {
@@ -28,12 +26,12 @@ public class AbilityScoreController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AbilityScore> getAbilityScoreById(@PathVariable UUID id) {
+    public ResponseEntity<AbilityScore> getAbilityScoreById(@PathVariable String id) {
         return abilityScoreService.getAbilityScoreById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAbilityScore(@PathVariable UUID id) {
+    public void deleteAbilityScore(@PathVariable String id) {
         abilityScoreService.deleteAbilityScore(id);
     }
 }
