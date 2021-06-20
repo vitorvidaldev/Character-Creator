@@ -1,7 +1,7 @@
 package dev.vitorvidal.characterCreator.application.controller;
 
-import dev.vitorvidal.characterCreator.domain.ability.AbilityScore;
-import dev.vitorvidal.characterCreator.domain.ability.AbilityScoreRepository;
+import dev.vitorvidal.characterCreator.application.service.AbilityScoreService;
+import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -10,36 +10,31 @@ import java.util.Optional;
 @RequestMapping("/ability")
 public class AbilityScoreController {
 
-    private final AbilityScoreRepository abilityScoreRepository;
+    private final AbilityScoreService abilityScoreService;
 
-    public AbilityScoreController(AbilityScoreRepository abilityScoreRepository) {
-        this.abilityScoreRepository = abilityScoreRepository;
+    public AbilityScoreController(AbilityScoreService abilityScoreService) {
+        this.abilityScoreService = abilityScoreService;
     }
 
     @GetMapping
     public Iterable<AbilityScore> getAll() {
 
-        return abilityScoreRepository.findAll();
+        return abilityScoreService.getAll();
 //        all.forEach(abilityScore -> );
     }
 
     @PostMapping
     public AbilityScore setAbilityScore(@RequestBody AbilityScore abilityScore) {
-        return abilityScoreRepository.save(abilityScore);
+        return abilityScoreService.setAbilityScore(abilityScore);
     }
 
     @GetMapping("/{id}")
     public Optional<AbilityScore> getAbilityScoreById(@PathVariable Long id) {
-        return abilityScoreRepository.findById(id);
-    }
-
-    @PutMapping("/{id}")
-    public void updateAbilityScore(@PathVariable Long id) {
-
+        return abilityScoreService.getAbilityScoreById(id);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAbilityScore(@PathVariable Long id) {
-
+        abilityScoreService.deleteAbilityScore(id);
     }
 }
