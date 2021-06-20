@@ -1,5 +1,6 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
+import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
@@ -12,10 +13,6 @@ public class AbilityScore {
     @Type(type = "pg-uuid")
     private UUID id;
 
-    public void setId() {
-        this.id = UUID.randomUUID();
-    }
-
     private int strength;
     private int dexterity;
     private int constitution;
@@ -24,15 +21,21 @@ public class AbilityScore {
     private int charisma;
 
     public AbilityScore() {
+        this.id = UUID.randomUUID();
     }
 
     public AbilityScore(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        this.id = UUID.randomUUID();
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
+    }
+
+    public UUID getId() {
+        return this.id;
     }
 
     public int getStrength() {
@@ -90,5 +93,9 @@ public class AbilityScore {
         this.intelligence += 2;
         this.wisdom += 2;
         this.charisma += 2;
+    }
+
+    public AbilityScoreVO toVO() {
+        return new AbilityScoreVO(this);
     }
 }
