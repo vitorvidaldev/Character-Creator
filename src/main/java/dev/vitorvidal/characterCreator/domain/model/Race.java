@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.model;
+package dev.vitorvidal.characterCreator.domain.model;
 
 public enum Race {
     AASIMAR,
