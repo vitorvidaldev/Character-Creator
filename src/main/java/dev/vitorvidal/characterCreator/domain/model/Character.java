@@ -1,12 +1,15 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Character {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue
+    private UUID id;
 
     private String name;
     private int age;
