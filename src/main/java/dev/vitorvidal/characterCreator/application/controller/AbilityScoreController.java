@@ -1,11 +1,10 @@
 package dev.vitorvidal.characterCreator.application.controller;
 
 import dev.vitorvidal.characterCreator.application.service.AbilityScoreService;
+import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
 import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/ability")
@@ -23,17 +22,17 @@ public class AbilityScoreController {
     }
 
     @PostMapping
-    public AbilityScore setAbilityScore(@RequestBody AbilityScore abilityScore) {
+    public ResponseEntity<AbilityScoreVO> setAbilityScore(@RequestBody AbilityScore abilityScore) {
         return abilityScoreService.setAbilityScore(abilityScore);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AbilityScore> getAbilityScoreById(@PathVariable UUID id) {
+    public ResponseEntity<AbilityScoreVO> getAbilityScoreById(@PathVariable String id) {
         return abilityScoreService.getAbilityScoreById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAbilityScore(@PathVariable UUID id) {
+    public void deleteAbilityScore(@PathVariable String id) {
         abilityScoreService.deleteAbilityScore(id);
     }
 }

@@ -6,6 +6,7 @@ import dev.vitorvidal.characterCreator.domain.repository.AbilityScoreRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,22 +24,28 @@ public class AbilityScoreService {
         return abilityScoreRepository.findAll();
     }
 
-    public AbilityScore setAbilityScore(AbilityScore abilityScore) {
-        return abilityScoreRepository.save(abilityScore);
+    public ResponseEntity<AbilityScoreVO> setAbilityScore(AbilityScore abilityScore) {
+        AbilityScore save = abilityScoreRepository.save(abilityScore);
+        return ResponseEntity.created(URI.create("/ability" + save.getId().toString())).body(save.toVO());
     }
 
-    public ResponseEntity<AbilityScore> getAbilityScoreById(UUID id) {
-        Optional<AbilityScore> byId = abilityScoreRepository.findById(id);
+    public ResponseEntity<AbilityScoreVO> getAbilityScoreById(String id) {
+        Optional<AbilityScore> byId = abilityScoreRepository.findById(UUID.fromString(id));
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
         }
-        return ResponseEntity.ok(byId.get());
+        return ResponseEntity.ok(byId.get().toVO());
     }
 
-    public void deleteAbilityScore(UUID id) {
-        abilityScoreRepository.deleteById(id);
+    public void deleteAbilityScore(String id) {
+        try {
+            abilityScoreRepository.deleteById(UUID.fromString(id));
+        } catch (Exception e) {
+            throw new NoSuchElementException("No element with the provided id exists.");
+        }
     }
 
+    // TODO: Design and implement
     public AbilityScoreVO levelUp() {
         return new AbilityScoreVO();
     }

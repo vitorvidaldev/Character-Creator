@@ -17,17 +17,17 @@ public class CharacterController {
     }
 
     @GetMapping("/{id}")
-    public void getCharacterById(@PathVariable Long id) {
+    public void getCharacterById(@PathVariable String id) {
 
     }
 
     @PutMapping("/{id}")
-    public void updateCharacter(@PathVariable Long id) {
+    public void updateCharacter(@PathVariable String id) {
 
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCharacter(@PathVariable Long id) {
+    public void deleteCharacter(@PathVariable String id) {
 
     }
 }
