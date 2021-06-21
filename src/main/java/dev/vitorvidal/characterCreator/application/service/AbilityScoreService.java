@@ -3,10 +3,10 @@ package dev.vitorvidal.characterCreator.application.service;
 import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
 import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
 import dev.vitorvidal.characterCreator.domain.repository.AbilityScoreRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,7 +26,7 @@ public class AbilityScoreService {
 
     public ResponseEntity<AbilityScoreVO> setAbilityScore(AbilityScore abilityScore) {
         AbilityScore save = abilityScoreRepository.save(abilityScore);
-        return new ResponseEntity<AbilityScoreVO>(save.toVO(), HttpStatus.CREATED);
+        return ResponseEntity.created(URI.create("/ability" + save.getId().toString())).body(save.toVO());
     }
 
     public ResponseEntity<AbilityScoreVO> getAbilityScoreById(String id) {

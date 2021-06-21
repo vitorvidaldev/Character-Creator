@@ -12,7 +12,6 @@ public class AbilityScoreController {
 
     private final AbilityScoreService abilityScoreService;
 
-    // TODO: Fix http 406 "could not find acceptable representation" error
     public AbilityScoreController(AbilityScoreService abilityScoreService) {
         this.abilityScoreService = abilityScoreService;
     }

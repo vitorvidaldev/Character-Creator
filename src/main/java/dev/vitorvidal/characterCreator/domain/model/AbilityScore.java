@@ -1,12 +1,14 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
 import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
+import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
+@Data
 @Entity
 public class AbilityScore {
     @Id
@@ -32,34 +34,6 @@ public class AbilityScore {
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-    }
-
-    public UUID getId() {
-        return this.id;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public int getDexterity() {
-        return dexterity;
-    }
-
-    public int getConstitution() {
-        return constitution;
-    }
-
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public int getWisdom() {
-        return wisdom;
-    }
-
-    public int getCharisma() {
-        return charisma;
     }
 
     public void updateStrength(int strength) {
@@ -96,6 +70,14 @@ public class AbilityScore {
     }
 
     public AbilityScoreVO toVO() {
-        return new AbilityScoreVO(this);
+        AbilityScoreVO vo = new AbilityScoreVO();
+        vo.setId(id);
+        vo.setStrength(strength);
+        vo.setDexterity(dexterity);
+        vo.setConstitution(constitution);
+        vo.setIntelligence(intelligence);
+        vo.setWisdom(wisdom);
+        vo.setCharisma(charisma);
+        return vo;
     }
 }
