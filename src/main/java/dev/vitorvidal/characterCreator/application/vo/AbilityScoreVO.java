@@ -1,10 +1,12 @@
 package dev.vitorvidal.characterCreator.application.vo;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@NoArgsConstructor
 public class AbilityScoreVO {
 
     private UUID id;
@@ -14,7 +16,4 @@ public class AbilityScoreVO {
     private int intelligence;
     private int wisdom;
     private int charisma;
-
-    public AbilityScoreVO() {
-    }
 }
