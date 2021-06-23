@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,8 +21,9 @@ public class AbilityScoreService {
         this.abilityScoreRepository = abilityScoreRepository;
     }
 
-    public Iterable<AbilityScore> getAll() {
-        return abilityScoreRepository.findAll();
+    public ResponseEntity<List<AbilityScore>> getAll() {
+        List<AbilityScore> all = (List<AbilityScore>) abilityScoreRepository.findAll();
+        return ResponseEntity.ok().body(all);
     }
 
     public ResponseEntity<AbilityScoreVO> setAbilityScore(AbilityScore abilityScore) {
