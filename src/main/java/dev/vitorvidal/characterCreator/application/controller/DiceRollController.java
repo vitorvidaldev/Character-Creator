@@ -8,7 +8,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/diceRoll")
-public class diceRollController {
+public class DiceRollController {
 
     final static Random rand = new Random();
 
