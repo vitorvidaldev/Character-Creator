@@ -1,7 +1,6 @@
 package dev.vitorvidal.characterCreator.domain.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
-@NoArgsConstructor
 @Entity
 public class Character {
     @Id
@@ -27,5 +25,9 @@ public class Character {
         this.characterClass = characterClass;
         this.name = name;
         this.age = age;
+    }
+
+    public Character() {
+        this.id = UUID.randomUUID();
     }
 }

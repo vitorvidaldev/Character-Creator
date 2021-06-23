@@ -6,6 +6,8 @@ import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/ability")
 public class AbilityScoreController {
@@ -17,7 +19,7 @@ public class AbilityScoreController {
     }
 
     @GetMapping
-    public Iterable<AbilityScore> getAll() {
+    public ResponseEntity<List<AbilityScore>> getAll() {
         return abilityScoreService.getAll();
     }
 
