@@ -1,8 +1,8 @@
-package dev.vitorvidal.characterCreator.application.controller;
+package dev.vitorvidal.charactercreator.application.controller;
 
-import dev.vitorvidal.characterCreator.application.service.AbilityScoreService;
-import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
-import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
+import dev.vitorvidal.charactercreator.application.service.AbilityScoreService;
+import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
+import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

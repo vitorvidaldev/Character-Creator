@@ -1,7 +1,7 @@
-package dev.vitorvidal.characterCreator.application.service;
+package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.characterCreator.domain.model.Character;
-import dev.vitorvidal.characterCreator.domain.repository.CharacterRepository;
+import dev.vitorvidal.charactercreator.domain.model.Character;
+import dev.vitorvidal.charactercreator.domain.repository.CharacterRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class CharacterService {
     }
 
     public ResponseEntity<Character> createCharacter(Character character) {
-        Character save = characterRepository.save(character);
+        var save = characterRepository.save(character);
         return ResponseEntity.created(URI.create("/character" + save.getId().toString())).body(save);
     }
 
@@ -47,7 +47,7 @@ public class CharacterService {
         byId.get().setAge(character.getAge());
         byId.get().setRace(character.getRace());
         byId.get().setCharacterClass(character.getCharacterClass());
-        Character save = characterRepository.save(byId.get());
+        var save = characterRepository.save(byId.get());
         return ResponseEntity.ok().body(save);
     }
 

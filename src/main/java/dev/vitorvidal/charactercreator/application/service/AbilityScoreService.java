@@ -1,8 +1,8 @@
-package dev.vitorvidal.characterCreator.application.service;
+package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
-import dev.vitorvidal.characterCreator.domain.model.AbilityScore;
-import dev.vitorvidal.characterCreator.domain.repository.AbilityScoreRepository;
+import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
+import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
+import dev.vitorvidal.charactercreator.domain.repository.AbilityScoreRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class AbilityScoreService {
     }
 
     public ResponseEntity<AbilityScoreVO> setAbilityScore(AbilityScore abilityScore) {
-        AbilityScore save = abilityScoreRepository.save(abilityScore);
+        var save = abilityScoreRepository.save(abilityScore);
         return ResponseEntity.created(URI.create("/ability" + save.getId().toString())).body(save.toVO());
     }
 

@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.config;
+package dev.vitorvidal.charactercreator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

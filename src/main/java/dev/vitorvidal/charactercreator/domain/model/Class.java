@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.domain.model;
+package dev.vitorvidal.charactercreator.domain.model;
 
 public enum Class {
     BARBARIAN,

@@ -1,6 +1,6 @@
-package dev.vitorvidal.characterCreator.domain.model;
+package dev.vitorvidal.charactercreator.domain.model;
 
-import dev.vitorvidal.characterCreator.application.vo.AbilityScoreVO;
+import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
@@ -70,7 +70,7 @@ public class AbilityScore {
     }
 
     public AbilityScoreVO toVO() {
-        AbilityScoreVO vo = new AbilityScoreVO();
+        var vo = new AbilityScoreVO();
         vo.setId(id);
         vo.setStrength(strength);
         vo.setDexterity(dexterity);

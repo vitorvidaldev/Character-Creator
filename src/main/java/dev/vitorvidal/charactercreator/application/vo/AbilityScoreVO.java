@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.application.vo;
+package dev.vitorvidal.charactercreator.application.vo;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

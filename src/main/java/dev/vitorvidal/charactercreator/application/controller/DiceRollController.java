@@ -1,4 +1,4 @@
-package dev.vitorvidal.characterCreator.application.controller;
+package dev.vitorvidal.charactercreator.application.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,7 @@ import java.util.Random;
 @RequestMapping("/diceRoll")
 public class DiceRollController {
 
-    final static Random rand = new Random();
+    static final Random rand = new Random();
 
     @GetMapping("/d3")
     public int d3() {

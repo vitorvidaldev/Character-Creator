@@ -1,6 +1,6 @@
-package dev.vitorvidal.characterCreator.domain.repository;
+package dev.vitorvidal.charactercreator.domain.repository;
 
-import dev.vitorvidal.characterCreator.domain.model.Character;
+import dev.vitorvidal.charactercreator.domain.model.Character;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

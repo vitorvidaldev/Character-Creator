@@ -1,7 +1,7 @@
-package dev.vitorvidal.characterCreator.application.controller;
+package dev.vitorvidal.charactercreator.application.controller;
 
-import dev.vitorvidal.characterCreator.application.service.CharacterService;
-import dev.vitorvidal.characterCreator.domain.model.Character;
+import dev.vitorvidal.charactercreator.application.service.CharacterService;
+import dev.vitorvidal.charactercreator.domain.model.Character;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
