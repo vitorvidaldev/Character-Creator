@@ -7,26 +7,26 @@ class AbilityScoreServiceTest {
 
     @Test
     @Disabled("Not Implemented")
-    void getAll() {
+    void testGetAll() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void setAbilityScore() {
+    void testSetAbilityScore() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void getAbilityScoreById() {
+    void testGetAbilityScoreById() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void deleteAbilityScore() {
+    void testDeleteAbilityScore() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void levelUp() {
+    void testLevelUp() {
     }
 }
