@@ -7,26 +7,26 @@ class CharacterServiceTest {
 
     @Test
     @Disabled("Not Implemented")
-    void getAll() {
+    void testGetAll() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void createCharacter() {
+    void testCreateCharacter() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void getCharacterById() {
+    void testGetCharacterById() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void updateCharacter() {
+    void testUpdateCharacter() {
     }
 
     @Test
     @Disabled("Not Implemented")
-    void deleteCharacter() {
+    void testDeleteCharacter() {
     }
 }
