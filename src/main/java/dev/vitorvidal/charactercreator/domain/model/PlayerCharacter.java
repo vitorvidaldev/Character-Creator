@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-public class Character {
+public class PlayerCharacter {
     @Id
     @Type(type = "pg-uuid")
     private UUID id;
@@ -17,17 +17,17 @@ public class Character {
     private String name;
     private int age;
     private Race race;
-    private Class characterClass;
+    private Job job;
 
-    public Character(Race race, Class characterClass, String name, int age) {
+    public PlayerCharacter(String name, int age, Race race, Job job) {
         this.id = UUID.randomUUID();
-        this.race = race;
-        this.characterClass = characterClass;
         this.name = name;
         this.age = age;
+        this.race = race;
+        this.job = job;
     }
 
-    public Character() {
+    public PlayerCharacter() {
         this.id = UUID.randomUUID();
     }
 }

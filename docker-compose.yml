@@ -16,7 +16,7 @@ services:
     image: adminer:4
     restart: always
     ports:
-    - "8090:8080"
+    - "4000:8080"
 
 volumes:
   db:
