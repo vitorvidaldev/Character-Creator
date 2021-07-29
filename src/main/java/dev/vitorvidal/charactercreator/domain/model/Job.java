@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-public enum Class {
+public enum Job {
     BARBARIAN,
     BARD,
     CLERIC,

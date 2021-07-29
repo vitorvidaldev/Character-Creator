@@ -1,5 +1,6 @@
 package dev.vitorvidal.charactercreator.application.vo;
 
+import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,4 +17,8 @@ public class AbilityScoreVO {
     private int intelligence;
     private int wisdom;
     private int charisma;
+
+    public AbilityScore toModel() {
+        return new AbilityScore(strength, dexterity, constitution, intelligence, wisdom, charisma);
+    }
 }

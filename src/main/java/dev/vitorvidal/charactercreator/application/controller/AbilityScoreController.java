@@ -24,8 +24,8 @@ public class AbilityScoreController {
     }
 
     @PostMapping
-    public ResponseEntity<AbilityScoreVO> setAbilityScore(@RequestBody AbilityScore abilityScore) {
-        return abilityScoreService.setAbilityScore(abilityScore);
+    public ResponseEntity<AbilityScoreVO> setAbilityScore(@RequestBody AbilityScoreVO abilityScore) {
+        return abilityScoreService.setAbilityScore(abilityScore.toModel());
     }
 
     @GetMapping("/{id}")
