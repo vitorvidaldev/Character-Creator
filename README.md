@@ -8,7 +8,7 @@ This API let's you create a character for tabletop RPGs, loosely based on D&D 5e
 ## Application requirements
 * Maven 3.8.1
 * Java 11
-* Spring Boot 2.5.1
+* Spring Boot 2.5.3
 * Docker
 * Docker Compose
 
