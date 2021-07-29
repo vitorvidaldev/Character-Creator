@@ -1,6 +1,7 @@
 package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.PlayerCharacterService;
+import dev.vitorvidal.charactercreator.application.vo.PlayerCharacterVO;
 import dev.vitorvidal.charactercreator.domain.model.PlayerCharacter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,8 @@ public class PlayerCharacterController {
     }
 
     @PostMapping
-    public ResponseEntity<PlayerCharacter> createCharacter(@RequestBody PlayerCharacter playerCharacter) {
-        return playerCharacterService.createCharacter(playerCharacter);
+    public ResponseEntity<PlayerCharacter> createCharacter(@RequestBody PlayerCharacterVO vo) {
+        return playerCharacterService.createCharacter(vo.toModel());
     }
 
     @GetMapping("/{id}")
@@ -34,8 +35,8 @@ public class PlayerCharacterController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PlayerCharacter> updateCharacter(@PathVariable String id, @RequestBody PlayerCharacter playerCharacter) {
-        return playerCharacterService.updateCharacter(UUID.fromString(id), playerCharacter);
+    public ResponseEntity<PlayerCharacter> updateCharacter(@PathVariable String id, @RequestBody PlayerCharacterVO vo) {
+        return playerCharacterService.updateCharacter(UUID.fromString(id), vo.toModel());
     }
 
     @DeleteMapping("/{id}")
