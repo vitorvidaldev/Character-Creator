@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class DiceRollControllerTests {
-
     private final DiceRollController controller = new DiceRollController();
 
     @Test
@@ -67,6 +66,5 @@ class DiceRollControllerTests {
         List<Integer> results = IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList());
         Assertions.assertTrue(results.contains(d20));
     }
-
 }
 
