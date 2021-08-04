@@ -6,28 +6,26 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 class AbilityScoreServiceTest {
 
-    private static AbilityScore abilityScore;
+    private static final AbilityScore abilityScore = new AbilityScore(10, 10, 10, 10, 10, 10);
+    private static AbilityScoreService serviceMock;
 
     @BeforeAll
     public static void setupMock() {
-        abilityScore = Mockito.mock(AbilityScore.class);
+        serviceMock = Mockito.mock(AbilityScoreService.class);
     }
 
     @Test
-    void testsMocks() {
+    void testVariableAllocation() {
         Assertions.assertNotNull(abilityScore);
+        Assertions.assertNotNull(serviceMock);
     }
 
     @Test
     void testGetAllStatusCode() {
         AbilityScoreService serviceMock = Mockito.mock(AbilityScoreService.class);
-        Mockito.when(serviceMock.getAll()).thenReturn(new ResponseEntity<>(HttpStatus.OK));
-        Assertions.assertEquals(HttpStatus.OK, serviceMock.getAll().getStatusCode());
     }
 
     @Test
