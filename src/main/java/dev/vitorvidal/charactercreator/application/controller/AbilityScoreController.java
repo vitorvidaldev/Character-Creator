@@ -6,6 +6,7 @@ import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,17 +21,20 @@ public class AbilityScoreController {
 
     @GetMapping
     public ResponseEntity<List<AbilityScore>> getAll() {
-        return abilityScoreService.getAll();
+        List<AbilityScore> all = abilityScoreService.getAll();
+        return ResponseEntity.ok().body(all);
     }
 
     @PostMapping
     public ResponseEntity<AbilityScoreVO> setAbilityScore(@RequestBody AbilityScoreVO abilityScore) {
-        return abilityScoreService.setAbilityScore(abilityScore.toModel());
+        AbilityScoreVO abilityScoreVO = abilityScoreService.setAbilityScore(abilityScore.toModel());
+        return ResponseEntity.created(URI.create("/ability" + abilityScoreVO.getId().toString())).body(abilityScoreVO);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AbilityScoreVO> getAbilityScoreById(@PathVariable String id) {
-        return abilityScoreService.getAbilityScoreById(id);
+        AbilityScoreVO abilityScoreById = abilityScoreService.getAbilityScoreById(id);
+        return ResponseEntity.ok(abilityScoreById);
     }
 
     @DeleteMapping("/{id}")
