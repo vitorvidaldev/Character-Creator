@@ -3,13 +3,9 @@ package dev.vitorvidal.charactercreator.application.vo;
 import dev.vitorvidal.charactercreator.domain.model.Job;
 import dev.vitorvidal.charactercreator.domain.model.PlayerCharacter;
 import dev.vitorvidal.charactercreator.domain.model.Race;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@NoArgsConstructor
 public class PlayerCharacterVO {
 
     private UUID id;
@@ -20,5 +16,17 @@ public class PlayerCharacterVO {
 
     public PlayerCharacter toModel() {
         return new PlayerCharacter(name, age, race, job);
+    }
+
+    public PlayerCharacterVO(UUID id, String name, int age, Race race, Job job) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.race = race;
+        this.job = job;
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
