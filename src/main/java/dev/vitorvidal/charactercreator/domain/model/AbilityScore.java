@@ -1,14 +1,12 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
-import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Data
 @Entity
 public class AbilityScore {
     @Id
@@ -70,14 +68,11 @@ public class AbilityScore {
     }
 
     public AbilityScoreVO toVO() {
-        var vo = new AbilityScoreVO();
-        vo.setId(id);
-        vo.setStrength(strength);
-        vo.setDexterity(dexterity);
-        vo.setConstitution(constitution);
-        vo.setIntelligence(intelligence);
-        vo.setWisdom(wisdom);
-        vo.setCharisma(charisma);
+        var vo = new AbilityScoreVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
         return vo;
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
