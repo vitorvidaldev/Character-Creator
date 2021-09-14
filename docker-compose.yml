@@ -8,15 +8,62 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: characterCreator
     ports:
-    - "5432:5432"
+      - "5432:5432"
     volumes:
-    - db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
+    networks:
+      - character-creator-network
 
   adminer:
     image: adminer:4
     restart: always
     ports:
-    - "4000:8080"
+      - "4000:8080"
+
+  character_creator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
+
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    links:
+      - "elasticsearch"
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
+    container_name: elasticsearch
+    environment:
+      - "discovery.type=single-node"
+    expose:
+      - "9200"
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.1
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
 
 volumes:
   db:
+
+networks:
+  character-creator-network:
+    driver: bridge
