@@ -1,15 +1,13 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class PlayerCharacter {
     @Id
-    @Type(type = "pg-uuid")
+//    @Type(type = "pg-uuid")
     private UUID id;
 
     private String name;

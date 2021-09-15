@@ -3,7 +3,7 @@
 Character Creator API for tabletop RPGs.
 
 ## API Description
-This API let's you create a character for tabletop RPGs, loosely based on D&D 5e and Pillars of Eternity.
+This API lets you create a character for tabletop RPGs, loosely based on D&D 5e and Pillars of Eternity.
 
 ## Application requirements
 * Maven 3.8.1
@@ -15,10 +15,14 @@ This API let's you create a character for tabletop RPGs, loosely based on D&D 5e
 ## How to execute the application
 To execute the docker-compose.yaml file, run:
 ```
+./mvnw package
+
 docker-compose up -d --build
 ```
 
-Run the project on IntelliJ.
+You can access the application via `localhost:8080`.
+
+You can access Kibana at `http://localhost:5601/app/management/kibana/indexPatterns`.
 
 ## Postman Collection
 TODO

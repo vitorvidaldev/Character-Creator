@@ -1,5 +1,27 @@
 version: "3.9"
 services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: character_creator_
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+    networks:
+      - character-creator-network
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - "8090:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: character_creator_
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongo_password
+    networks:
+      - character-creator-network
+
   fluentd:
     build: ./fluentd
     volumes:

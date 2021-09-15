@@ -1,16 +1,14 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.UUID;
 
-@Entity
+//@Entity
 public class AbilityScore {
     @Id
-    @Type(type = "pg-uuid")
+//    @Type(type = "pg-uuid")
     private UUID id;
 
     private int strength;
