@@ -1,22 +1,72 @@
 version: "3.9"
 services:
-  postgres:
-    image: postgres:13-alpine
+  mongo:
+    image: mongo
     restart: always
+    ports:
+      - "27017:27017"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: characterCreator
-    ports:
-    - "5432:5432"
-    volumes:
-    - db:/var/lib/postgresql/data
+      MONGO_INITDB_ROOT_USERNAME: character_creator_
+      MONGO_INITDB_ROOT_PASSWORD: mongo_password
+    networks:
+      - character-creator-network
 
-  adminer:
-    image: adminer:4
+  mongo-express:
+    image: mongo-express
     restart: always
     ports:
-    - "4000:8080"
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: character_creator_
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongo_password
+    networks:
+      - character-creator-network
+
+#  fluentd:
+#    build: ./fluentd
+#    volumes:
+#      - ./fluentd/conf:/fluentd/etc
+#    links:
+#      - "elasticsearch"
+#    ports:
+#      - "24224:24224"
+#      - "24224:24224/udp"
+#
+#  character_creator:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    links:
+#      - fluentd
+#    logging:
+#      driver: "fluentd"
+#      options:
+#        fluentd-address: localhost:24224
+#        fluentd-async-connect: "true"
+#        tag: httpd.access
+#
+#  elasticsearch:
+#    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.1
+#    container_name: elasticsearch
+#    environment:
+#      - "discovery.type=single-node"
+#    expose:
+#      - "9200"
+#    ports:
+#      - "9200:9200"
+#
+#  kibana:
+#    image: docker.elastic.co/kibana/kibana:7.13.1
+#    links:
+#      - "elasticsearch"
+#    ports:
+#      - "5601:5601"
 
 volumes:
   db:
+
+networks:
+  character-creator-network:
+    driver: bridge

@@ -3,22 +3,26 @@
 Character Creator API for tabletop RPGs.
 
 ## API Description
-This API let's you create a character for tabletop RPGs, loosely based on D&D 5e and Pillars of Eternity.
+This API lets you create a character for tabletop RPGs, loosely based on D&D 5e and Pillars of Eternity.
+
+The following diagram describes the relationships designed for this application.
+
+![Project Design](./docs/character_creator_api.drawio.svg)
 
 ## Application requirements
 * Maven 3.8.1
 * Java 11
-* Spring Boot 2.5.3
+* Spring Boot 2.5
 * Docker
 * Docker Compose
 
 ## How to execute the application
-To execute the docker-compose.yaml file, run:
+Instantiate the database using the following command:
 ```
 docker-compose up -d --build
 ```
 
-Run the project on IntelliJ.
+Run the application using IntelliJ. You can access the application via `localhost:8080`.
 
 ## Postman Collection
 TODO

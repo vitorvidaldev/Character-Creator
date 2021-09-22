@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
+@Disabled
 class AbilityScoreServiceTest {
 
     private static final List<AbilityScore> abilityScores = new ArrayList<>();
