@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.application.controller;
 
-import dev.vitorvidal.charactercreator.application.service.AbilityScoreService;
+import dev.vitorvidal.charactercreator.application.service.AttributeService;
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
 import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
 import org.springframework.http.ResponseEntity;
@@ -10,35 +10,35 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ability")
-public class AbilityScoreController {
+@RequestMapping("/attribute")
+public class AttributeController {
 
-    private final AbilityScoreService abilityScoreService;
+    private final AttributeService attributeService;
 
-    public AbilityScoreController(AbilityScoreService abilityScoreService) {
-        this.abilityScoreService = abilityScoreService;
+    public AttributeController(AttributeService attributeService) {
+        this.attributeService = attributeService;
     }
 
     @GetMapping
     public ResponseEntity<List<AbilityScore>> getAll() {
-        List<AbilityScore> all = abilityScoreService.getAll();
+        List<AbilityScore> all = attributeService.getAll();
         return ResponseEntity.ok().body(all);
     }
 
     @PostMapping
     public ResponseEntity<AbilityScoreVO> setAbilityScore(@RequestBody AbilityScoreVO abilityScore) {
-        AbilityScoreVO abilityScoreVO = abilityScoreService.setAbilityScore(abilityScore.toModel());
-        return ResponseEntity.created(URI.create("/ability" + abilityScoreVO.getId().toString())).body(abilityScoreVO);
+        AbilityScoreVO abilityScoreVO = attributeService.setAbilityScore(abilityScore.toModel());
+        return ResponseEntity.created(URI.create("/attribute" + abilityScoreVO.getId().toString())).body(abilityScoreVO);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AbilityScoreVO> getAbilityScoreById(@PathVariable String id) {
-        AbilityScoreVO abilityScoreById = abilityScoreService.getAbilityScoreById(id);
+        AbilityScoreVO abilityScoreById = attributeService.getAbilityScoreById(id);
         return ResponseEntity.ok(abilityScoreById);
     }
 
     @DeleteMapping("/{id}")
     public void deleteAbilityScore(@PathVariable String id) {
-        abilityScoreService.deleteAbilityScore(id);
+        attributeService.deleteAbilityScore(id);
     }
 }

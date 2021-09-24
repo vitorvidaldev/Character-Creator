@@ -2,7 +2,7 @@ package dev.vitorvidal.charactercreator.application.service;
 
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
 import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
-import dev.vitorvidal.charactercreator.domain.repository.AbilityScoreRepository;
+import dev.vitorvidal.charactercreator.domain.repository.AttributeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,24 +11,24 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class AbilityScoreService {
+public class AttributeService {
 
-    private final AbilityScoreRepository abilityScoreRepository;
+    private final AttributeRepository attributeRepository;
 
-    public AbilityScoreService(AbilityScoreRepository abilityScoreRepository) {
-        this.abilityScoreRepository = abilityScoreRepository;
+    public AttributeService(AttributeRepository attributeRepository) {
+        this.attributeRepository = attributeRepository;
     }
 
     public List<AbilityScore> getAll() {
-        return (List<AbilityScore>) abilityScoreRepository.findAll();
+        return (List<AbilityScore>) attributeRepository.findAll();
     }
 
     public AbilityScoreVO setAbilityScore(AbilityScore abilityScore) {
-        return abilityScoreRepository.save(abilityScore).toVO();
+        return attributeRepository.save(abilityScore).toVO();
     }
 
     public AbilityScoreVO getAbilityScoreById(String id) {
-        Optional<AbilityScore> byId = abilityScoreRepository.findById(UUID.fromString(id));
+        Optional<AbilityScore> byId = attributeRepository.findById(UUID.fromString(id));
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
         }
@@ -37,7 +37,7 @@ public class AbilityScoreService {
 
     public void deleteAbilityScore(String id) {
         try {
-            abilityScoreRepository.deleteById(UUID.fromString(id));
+            attributeRepository.deleteById(UUID.fromString(id));
         } catch (Exception e) {
             throw new NoSuchElementException("No element with the provided id exists.");
         }

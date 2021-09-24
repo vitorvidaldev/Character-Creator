@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Disabled
-class AbilityScoreServiceTest {
+class AttributeServiceTest {
 
     private static final List<AbilityScore> abilityScores = new ArrayList<>();
     private static AbilityScore abilityScore;
-    private static AbilityScoreService serviceMock;
+    private static AttributeService serviceMock;
 
     @BeforeAll
     public static void setupMock() {
@@ -24,7 +24,7 @@ class AbilityScoreServiceTest {
         abilityScores.add(abilityScore);
         abilityScores.add(abilityScore);
 
-        serviceMock = Mockito.mock(AbilityScoreService.class);
+        serviceMock = Mockito.mock(AttributeService.class);
     }
 
     @Test

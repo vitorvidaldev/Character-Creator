@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 //@Repository
-public interface AbilityScoreRepository extends MongoRepository<AbilityScore, UUID> {
+public interface AttributeRepository extends MongoRepository<AbilityScore, UUID> {
 }
