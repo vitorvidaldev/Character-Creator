@@ -2,7 +2,7 @@ package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.AttributeService;
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
-import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
+import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/attribute")
 public class AttributeController {
-
     private final AttributeService attributeService;
 
     public AttributeController(AttributeService attributeService) {
@@ -20,8 +19,8 @@ public class AttributeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AbilityScore>> getAll() {
-        List<AbilityScore> all = attributeService.getAll();
+    public ResponseEntity<List<Attribute>> getAll() {
+        List<Attribute> all = attributeService.getAll();
         return ResponseEntity.ok().body(all);
     }
 

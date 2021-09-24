@@ -1,7 +1,7 @@
 package dev.vitorvidal.charactercreator.application.service;
 
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
-import dev.vitorvidal.charactercreator.domain.model.AbilityScore;
+import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import dev.vitorvidal.charactercreator.domain.repository.AttributeRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +19,16 @@ public class AttributeService {
         this.attributeRepository = attributeRepository;
     }
 
-    public List<AbilityScore> getAll() {
-        return (List<AbilityScore>) attributeRepository.findAll();
+    public List<Attribute> getAll() {
+        return (List<Attribute>) attributeRepository.findAll();
     }
 
-    public AbilityScoreVO setAbilityScore(AbilityScore abilityScore) {
-        return attributeRepository.save(abilityScore).toVO();
+    public AbilityScoreVO setAbilityScore(Attribute attribute) {
+        return attributeRepository.save(attribute).toVO();
     }
 
     public AbilityScoreVO getAbilityScoreById(String id) {
-        Optional<AbilityScore> byId = attributeRepository.findById(UUID.fromString(id));
+        Optional<Attribute> byId = attributeRepository.findById(UUID.fromString(id));
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
         }

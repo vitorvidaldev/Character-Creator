@@ -2,14 +2,10 @@ package dev.vitorvidal.charactercreator.domain.model;
 
 import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
 
-import javax.persistence.Id;
 import java.util.UUID;
 
-//@Entity
-public class AbilityScore {
-    @Id
-//    @Type(type = "pg-uuid")
-    private UUID id;
+public class Attribute {
+    private final String id;
 
     private int strength;
     private int dexterity;
@@ -18,12 +14,12 @@ public class AbilityScore {
     private int wisdom;
     private int charisma;
 
-    public AbilityScore() {
-        this.id = UUID.randomUUID();
+    public Attribute() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public AbilityScore(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.id = UUID.randomUUID();
+    public Attribute(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        this.id = UUID.randomUUID().toString();
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -66,11 +62,10 @@ public class AbilityScore {
     }
 
     public AbilityScoreVO toVO() {
-        var vo = new AbilityScoreVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
-        return vo;
+        return new AbilityScoreVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 }
