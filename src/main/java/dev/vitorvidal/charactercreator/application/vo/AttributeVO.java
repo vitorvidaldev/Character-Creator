@@ -2,7 +2,7 @@ package dev.vitorvidal.charactercreator.application.vo;
 
 import dev.vitorvidal.charactercreator.domain.model.Attribute;
 
-public class AbilityScoreVO {
+public class AttributeVO {
 
     private String id;
     private int strength;
@@ -16,8 +16,8 @@ public class AbilityScoreVO {
         return new Attribute(strength, dexterity, constitution, intelligence, wisdom, charisma);
     }
 
-    public AbilityScoreVO(String id, int strength, int dexterity, int constitution, int intelligence, int wisdom,
-            int charisma) {
+    public AttributeVO(String id, int strength, int dexterity, int constitution, int intelligence, int wisdom,
+                       int charisma) {
         this.id = id;
         this.strength = strength;
         this.dexterity = dexterity;
@@ -27,7 +27,7 @@ public class AbilityScoreVO {
         this.charisma = charisma;
     }
 
-    public AbilityScoreVO() {
+    public AttributeVO() {
     }
 
     public String getId() {

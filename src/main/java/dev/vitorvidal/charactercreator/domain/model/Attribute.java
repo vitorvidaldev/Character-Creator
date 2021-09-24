@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
+import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
 
 import java.util.UUID;
 
@@ -52,17 +52,8 @@ public class Attribute {
         this.charisma += charisma;
     }
 
-    public void levelUp() {
-        this.strength += 2;
-        this.dexterity += 2;
-        this.constitution += 2;
-        this.intelligence += 2;
-        this.wisdom += 2;
-        this.charisma += 2;
-    }
-
-    public AbilityScoreVO toVO() {
-        return new AbilityScoreVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
+    public AttributeVO toVO() {
+        return new AttributeVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
     }
 
     public String getId() {

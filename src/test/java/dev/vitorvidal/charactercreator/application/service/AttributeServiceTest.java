@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
+import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
 import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,15 +43,15 @@ class AttributeServiceTest {
 
     @Test
     void testSetAbilityScore() {
-        Mockito.when(serviceMock.setAbilityScore(attribute)).thenReturn(attribute.toVO());
-        AbilityScoreVO returnObject = serviceMock.setAbilityScore(attribute);
+        Mockito.when(serviceMock.setAttribute(attribute)).thenReturn(attribute.toVO());
+        AttributeVO returnObject = serviceMock.setAttribute(attribute);
         Assertions.assertEquals(attribute.toVO(), returnObject);
     }
 
     @Test
     void testGetAbilityScoreById() {
-        Mockito.when(serviceMock.getAbilityScoreById(attribute.getId().toString())).thenReturn(attribute.toVO());
-        AbilityScoreVO returnObject = serviceMock.getAbilityScoreById(attribute.getId().toString());
+        Mockito.when(serviceMock.getAttributeVO(attribute.getId().toString())).thenReturn(attribute.toVO());
+        AttributeVO returnObject = serviceMock.getAttributeVO(attribute.getId().toString());
         Assertions.assertEquals(attribute.toVO(), returnObject);
     }
 

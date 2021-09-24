@@ -1,8 +1,8 @@
-package dev.vitorvidal.charactercreator.util;
+package dev.vitorvidal.charactercreator.application.service;
 
 import java.util.Random;
 
-public class DiceSimulator {
+public class DiceService {
     // TODO Implement better random number generator
     static final Random rand = new Random();
 

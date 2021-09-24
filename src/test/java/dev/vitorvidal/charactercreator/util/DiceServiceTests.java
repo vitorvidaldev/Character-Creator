@@ -1,5 +1,6 @@
 package dev.vitorvidal.charactercreator.util;
 
+import dev.vitorvidal.charactercreator.application.service.DiceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class DiceSimulatorTests {
-    private final DiceSimulator dice = new DiceSimulator();
+class DiceServiceTests {
+    private final DiceService dice = new DiceService();
 
     @Test
     @DisplayName("Tests if the method returns one of the three possible values for a D3")
