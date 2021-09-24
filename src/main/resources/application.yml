@@ -2,3 +2,7 @@ spring:
   autoconfigure:
     exclude:
       - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  data:
+    mongodb:
+      uri: mongodb://character_creator_:mongo_password@localhost:27017/?authSource=admin
+      database: characterCreator

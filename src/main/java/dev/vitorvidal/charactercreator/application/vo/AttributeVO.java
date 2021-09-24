@@ -13,10 +13,23 @@ public class AttributeVO {
     private int charisma;
 
     public Attribute toModel() {
-        return new Attribute(strength, dexterity, constitution, intelligence, wisdom, charisma);
+        return new Attribute(
+                strength,
+                dexterity,
+                constitution,
+                intelligence,
+                wisdom,
+                charisma);
     }
 
-    public AttributeVO(String id, int strength, int dexterity, int constitution, int intelligence, int wisdom,
+    public AttributeVO() {}
+
+    public AttributeVO(String id,
+                       int strength,
+                       int dexterity,
+                       int constitution,
+                       int intelligence,
+                       int wisdom,
                        int charisma) {
         this.id = id;
         this.strength = strength;
@@ -25,9 +38,6 @@ public class AttributeVO {
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
-    }
-
-    public AttributeVO() {
     }
 
     public String getId() {

@@ -1,11 +1,15 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
 import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Document("attribute")
 public class Attribute {
-    private final String id;
+    @Id
+    private String id;
 
     private int strength;
     private int dexterity;
@@ -58,5 +62,9 @@ public class Attribute {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
