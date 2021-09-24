@@ -28,7 +28,7 @@ public class AttributeController {
     @PostMapping
     public ResponseEntity<AttributeVO> setAbilityScore(@RequestBody AttributeVO abilityScore) {
         AttributeVO attributeVO = attributeService.setAttribute(abilityScore.toModel());
-        return ResponseEntity.created(URI.create("/attribute" + attributeVO.getId().toString())).body(attributeVO);
+        return ResponseEntity.created(URI.create("/attribute" + attributeVO.getId())).body(attributeVO);
     }
 
     @GetMapping("/{id}")

@@ -1,7 +1,10 @@
 package dev.vitorvidal.charactercreator.application.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 
+@Service
 public class DiceService {
     // TODO Implement better random number generator
     static final Random rand = new Random();
