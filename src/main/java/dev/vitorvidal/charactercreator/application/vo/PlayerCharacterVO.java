@@ -1,24 +1,21 @@
 package dev.vitorvidal.charactercreator.application.vo;
 
 import dev.vitorvidal.charactercreator.domain.model.Job;
-import dev.vitorvidal.charactercreator.domain.model.PlayerCharacter;
+import dev.vitorvidal.charactercreator.domain.model.Player;
 import dev.vitorvidal.charactercreator.domain.model.Race;
 
-import java.util.UUID;
-
 public class PlayerCharacterVO {
-
-    private UUID id;
+    private String id;
     private String name;
     private int age;
     private Race race;
     private Job job;
 
-    public PlayerCharacter toModel() {
-        return new PlayerCharacter(name, age, race, job);
+    public Player toModel() {
+        return new Player(name, age, race, job);
     }
 
-    public PlayerCharacterVO(UUID id, String name, int age, Race race, Job job) {
+    public PlayerCharacterVO(String id, String name, int age, Race race, Job job) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -26,7 +23,7 @@ public class PlayerCharacterVO {
         this.job = job;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 }

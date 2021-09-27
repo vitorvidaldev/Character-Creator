@@ -1,33 +1,37 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import javax.persistence.Entity;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import javax.persistence.Id;
 import java.util.UUID;
 
-//@Entity
-public class PlayerCharacter {
+@Document("player")
+public class Player {
     @Id
-//    @Type(type = "pg-uuid")
-    private UUID id;
-
+    private String id;
+    @Field("name")
     private String name;
+    @Field("age")
     private int age;
+    @Field("race")
     private Race race;
+    @Field("job")
     private Job job;
 
-    public PlayerCharacter(String name, int age, Race race, Job job) {
-        this.id = UUID.randomUUID();
+    public Player(String name, int age, Race race, Job job) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.age = age;
         this.race = race;
         this.job = job;
     }
 
-    public PlayerCharacter() {
-        this.id = UUID.randomUUID();
+    public Player() {
+        this.id = UUID.randomUUID().toString();
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 

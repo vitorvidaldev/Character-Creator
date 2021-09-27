@@ -10,9 +10,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 @Configuration
 @EnableWebSecurity
 public class HttpSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    // CSRF (Cross Site Request Forgery) are enabled by default. You should disable them if your API is not being used
-    // directly in the browser
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
