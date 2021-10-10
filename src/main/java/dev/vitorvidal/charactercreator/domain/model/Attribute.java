@@ -1,15 +1,10 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.UUID;
-
 @Document("attribute")
 public class Attribute {
-    @Id
-    private String id;
     @Field("strength")
     private int strength;
     @Field("dexterity")
@@ -23,12 +18,7 @@ public class Attribute {
     @Field("charisma")
     private int charisma;
 
-    public Attribute() {
-        this.id = UUID.randomUUID().toString();
-    }
-
     public Attribute(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.id = UUID.randomUUID().toString();
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -59,13 +49,5 @@ public class Attribute {
 
     public void updateCharisma(int charisma) {
         this.charisma += charisma;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
