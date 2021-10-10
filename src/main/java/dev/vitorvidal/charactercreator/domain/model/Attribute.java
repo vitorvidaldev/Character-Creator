@@ -1,8 +1,6 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import java.io.Serializable;
-
-public class Attribute implements Serializable {
+public class Attribute {
     private int strength;
     private int dexterity;
     private int constitution;
@@ -19,6 +17,30 @@ public class Attribute implements Serializable {
         this.intelligence = intelligence;
         this.wisdom = wisdom;
         this.charisma = charisma;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public int getWisdom() {
+        return wisdom;
+    }
+
+    public int getCharisma() {
+        return charisma;
     }
 
     public void updateStrength(int strength) {

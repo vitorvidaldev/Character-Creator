@@ -2,11 +2,11 @@ package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.PlayerService;
 import dev.vitorvidal.charactercreator.domain.model.Player;
+import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/player")
@@ -29,17 +29,17 @@ public class PlayerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Player> getCharacterById(@PathVariable String id) {
-        return playerService.getCharacterById(UUID.fromString(id));
+    public ResponseEntity<Player> getCharacterById(@PathVariable ObjectId id) {
+        return playerService.getCharacterById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Player> updateCharacter(@PathVariable String id, @RequestBody Player player) {
-        return playerService.updateCharacter(UUID.fromString(id), player);
+    public ResponseEntity<Player> updateCharacter(@PathVariable ObjectId id, @RequestBody Player player) {
+        return playerService.updateCharacter(id, player);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCharacter(@PathVariable String id) {
-        return playerService.deleteCharacter(UUID.fromString(id));
+    public ResponseEntity<Void> deleteCharacter(@PathVariable ObjectId id) {
+        return playerService.deleteCharacter(id);
     }
 }
