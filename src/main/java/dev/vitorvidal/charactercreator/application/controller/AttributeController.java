@@ -1,10 +1,11 @@
 package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.AttributeService;
-import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
+import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -17,20 +18,20 @@ public class AttributeController {
     }
 
     @PostMapping
-    public ResponseEntity<AttributeVO> setAttribute(@RequestBody AttributeVO abilityScore) {
-        AttributeVO attributeVO = attributeService.setAttribute(abilityScore.toModel());
+    public ResponseEntity<Attribute> setAttribute(@RequestBody @Valid Attribute body) {
+        Attribute attributeVO = attributeService.setAttribute(body);
         return ResponseEntity.created(URI.create("/attribute" + attributeVO.getId())).body(attributeVO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AttributeVO> getAttribute(@PathVariable String id) {
-        AttributeVO abilityScoreById = attributeService.getAttributeVO(id);
+    public ResponseEntity<Attribute> getAttribute(@PathVariable String id) {
+        Attribute abilityScoreById = attributeService.getAttribute(id);
         return ResponseEntity.ok(abilityScoreById);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AttributeVO> levelUp(@PathVariable String id) {
-        AttributeVO attributeVO = attributeService.levelUp(id);
+    public ResponseEntity<Attribute> levelUp(@PathVariable String id) {
+        Attribute attributeVO = attributeService.levelUp(id);
         return ResponseEntity.ok().body(attributeVO);
     }
 

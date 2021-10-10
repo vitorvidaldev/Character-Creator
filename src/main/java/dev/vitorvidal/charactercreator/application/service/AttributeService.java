@@ -1,6 +1,5 @@
 package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
 import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import dev.vitorvidal.charactercreator.domain.repository.AttributeRepository;
 import org.springframework.stereotype.Service;
@@ -24,16 +23,11 @@ public class AttributeService {
         return attributeRepository.findAll();
     }
 
-    public AttributeVO setAttribute(Attribute attribute) {
-        return attributeRepository.save(attribute).toVO();
+    public Attribute setAttribute(Attribute attribute) {
+        return attributeRepository.save(attribute);
     }
 
-    public AttributeVO getAttributeVO(String id) {
-        Attribute byId = getAttribute(id);
-        return byId.toVO();
-    }
-
-    private Attribute getAttribute(String id) {
+    public Attribute getAttribute(String id) {
         Optional<Attribute> byId = attributeRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
@@ -49,7 +43,7 @@ public class AttributeService {
         }
     }
 
-    public AttributeVO levelUp(String id) {
+    public Attribute levelUp(String id) {
         Attribute attribute = getAttribute(id);
 
         attribute.updateStrength(diceService.d3());
@@ -61,6 +55,6 @@ public class AttributeService {
 
         attributeRepository.save(attribute);
 
-        return attribute.toVO();
+        return attribute;
     }
 }

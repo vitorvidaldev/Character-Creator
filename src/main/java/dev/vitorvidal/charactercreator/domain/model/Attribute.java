@@ -1,10 +1,9 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import dev.vitorvidal.charactercreator.application.vo.AttributeVO;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Id;
 import java.util.UUID;
 
 @Document("attribute")
@@ -38,16 +37,6 @@ public class Attribute {
         this.charisma = charisma;
     }
 
-    public Attribute(String id, int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.id = id;
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        this.intelligence = intelligence;
-        this.wisdom = wisdom;
-        this.charisma = charisma;
-    }
-
     public void updateStrength(int strength) {
         this.strength += strength;
     }
@@ -70,10 +59,6 @@ public class Attribute {
 
     public void updateCharisma(int charisma) {
         this.charisma += charisma;
-    }
-
-    public AttributeVO toVO() {
-        return new AttributeVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
     }
 
     public String getId() {
