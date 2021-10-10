@@ -1,11 +1,11 @@
 package dev.vitorvidal.charactercreator.application.service;
 
+import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import dev.vitorvidal.charactercreator.domain.model.Player;
 import dev.vitorvidal.charactercreator.domain.repository.PlayerRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -15,9 +15,11 @@ import java.util.UUID;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final DiceService diceService;
 
-    public PlayerService(PlayerRepository playerRepository) {
+    public PlayerService(PlayerRepository playerRepository, DiceService diceService) {
         this.playerRepository = playerRepository;
+        this.diceService = diceService;
     }
 
     public ResponseEntity<List<Player>> getAll() {
@@ -27,7 +29,7 @@ public class PlayerService {
 
     public ResponseEntity<Player> createCharacter(Player player) {
         var save = playerRepository.save(player);
-        return ResponseEntity.created(URI.create("/character" + save.getId())).body(save);
+        return ResponseEntity.status(201).body(save);
     }
 
     public ResponseEntity<Player> getCharacterById(UUID id) {
@@ -54,5 +56,18 @@ public class PlayerService {
     public ResponseEntity<Void> deleteCharacter(UUID id) {
         playerRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    public Attribute levelUp(String id) {
+        Attribute attribute = new Attribute();
+
+        attribute.updateStrength(diceService.d3());
+        attribute.updateDexterity(diceService.d3());
+        attribute.updateConstitution(diceService.d3());
+        attribute.updateCharisma(diceService.d3());
+        attribute.updateIntelligence(diceService.d3());
+        attribute.updateWisdom(diceService.d3());
+
+        return attribute;
     }
 }

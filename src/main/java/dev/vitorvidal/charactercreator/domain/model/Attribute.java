@@ -1,22 +1,16 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import java.io.Serializable;
 
-@Document("attribute")
-public class Attribute {
-    @Field("strength")
+public class Attribute implements Serializable {
     private int strength;
-    @Field("dexterity")
     private int dexterity;
-    @Field("constitution")
     private int constitution;
-    @Field("intelligence")
     private int intelligence;
-    @Field("wisdom")
     private int wisdom;
-    @Field("charisma")
     private int charisma;
+
+    public Attribute() {}
 
     public Attribute(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.strength = strength;
@@ -49,5 +43,17 @@ public class Attribute {
 
     public void updateCharisma(int charisma) {
         this.charisma += charisma;
+    }
+
+    @Override
+    public String toString() {
+        return "Attribute{" +
+                "strength=" + strength +
+                ", dexterity=" + dexterity +
+                ", constitution=" + constitution +
+                ", intelligence=" + intelligence +
+                ", wisdom=" + wisdom +
+                ", charisma=" + charisma +
+                '}';
     }
 }

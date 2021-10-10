@@ -1,38 +1,45 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.UUID;
+import javax.validation.constraints.NotNull;
 
 @Document("player")
 public class Player {
-    @Id
-    private String id;
-    @Field("name")
+    @NotNull
     private String name;
-    @Field("age")
+    @NotNull
     private int age;
-    @Field("race")
+    private Attribute attribute;
     private Race race;
-    @Field("job")
     private Job job;
 
+    public Player() {}
+
+    public Player(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Player(String name, int age, Race race, Job job) {
-        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.age = age;
         this.race = race;
         this.job = job;
     }
 
-    public Player() {
-        this.id = UUID.randomUUID().toString();
+    public Player(String name, int age, Attribute attribute) {
+        this.name = name;
+        this.age = age;
+        this.attribute = attribute;
     }
 
-    public String getId() {
-        return id;
+    public Player(String name, int age, Attribute attribute, Race race, Job job) {
+        this.name = name;
+        this.age = age;
+        this.attribute = attribute;
+        this.race = race;
+        this.job = job;
     }
 
     public String getName() {
@@ -49,6 +56,14 @@ public class Player {
 
     public Job getJob() {
         return job;
+    }
+
+    public Attribute getAttribute() {
+        return attribute;
+    }
+
+    public void setAttribute(Attribute attribute) {
+        this.attribute = attribute;
     }
 
     public void setName(String name) {
