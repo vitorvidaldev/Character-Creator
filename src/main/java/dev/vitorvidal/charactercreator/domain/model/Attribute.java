@@ -1,16 +1,8 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import dev.vitorvidal.charactercreator.application.vo.AbilityScoreVO;
+import java.io.Serializable;
 
-import javax.persistence.Id;
-import java.util.UUID;
-
-//@Entity
-public class AbilityScore {
-    @Id
-//    @Type(type = "pg-uuid")
-    private UUID id;
-
+public class Attribute implements Serializable {
     private int strength;
     private int dexterity;
     private int constitution;
@@ -18,12 +10,9 @@ public class AbilityScore {
     private int wisdom;
     private int charisma;
 
-    public AbilityScore() {
-        this.id = UUID.randomUUID();
-    }
+    public Attribute() {}
 
-    public AbilityScore(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        this.id = UUID.randomUUID();
+    public Attribute(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.constitution = constitution;
@@ -56,21 +45,15 @@ public class AbilityScore {
         this.charisma += charisma;
     }
 
-    public void levelUp() {
-        this.strength += 2;
-        this.dexterity += 2;
-        this.constitution += 2;
-        this.intelligence += 2;
-        this.wisdom += 2;
-        this.charisma += 2;
-    }
-
-    public AbilityScoreVO toVO() {
-        var vo = new AbilityScoreVO(id, strength, dexterity, constitution, intelligence, wisdom, charisma);
-        return vo;
-    }
-
-    public UUID getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Attribute{" +
+                "strength=" + strength +
+                ", dexterity=" + dexterity +
+                ", constitution=" + constitution +
+                ", intelligence=" + intelligence +
+                ", wisdom=" + wisdom +
+                ", charisma=" + charisma +
+                '}';
     }
 }
