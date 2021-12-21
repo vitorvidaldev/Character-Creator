@@ -3,6 +3,7 @@ package dev.vitorvidal.charactercreator.application.service;
 import dev.vitorvidal.charactercreator.domain.model.Attribute;
 import dev.vitorvidal.charactercreator.domain.model.Player;
 import dev.vitorvidal.charactercreator.domain.repository.PlayerRepository;
+import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class PlayerService {
         return ResponseEntity.status(201).body(save);
     }
 
-    public ResponseEntity<Player> getCharacterById(UUID id) {
+    public ResponseEntity<Player> getCharacterById(ObjectId id) {
         Optional<Player> byId = playerRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
@@ -40,7 +41,7 @@ public class PlayerService {
         return ResponseEntity.ok().body(byId.get());
     }
 
-    public ResponseEntity<Player> updateCharacter(UUID id, Player player) {
+    public ResponseEntity<Player> updateCharacter(ObjectId id, Player player) {
         Optional<Player> byId = playerRepository.findById(id);
         if (byId.isEmpty()) {
             throw new NoSuchElementException();
@@ -53,7 +54,7 @@ public class PlayerService {
         return ResponseEntity.ok().body(save);
     }
 
-    public ResponseEntity<Void> deleteCharacter(UUID id) {
+    public ResponseEntity<Void> deleteCharacter(ObjectId id) {
         playerRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

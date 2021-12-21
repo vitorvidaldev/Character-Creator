@@ -1,11 +1,17 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
 
+@Data
+@AllArgsConstructor
 @Document("player")
 public class Player {
+    private ObjectId id;
     @NotNull
     private String name;
     @NotNull
@@ -39,46 +45,6 @@ public class Player {
         this.age = age;
         this.attribute = attribute;
         this.race = race;
-        this.job = job;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public Attribute getAttribute() {
-        return attribute;
-    }
-
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
-    public void setJob(Job job) {
         this.job = job;
     }
 }
