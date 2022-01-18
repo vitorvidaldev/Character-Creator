@@ -10,9 +10,9 @@ The following diagram describes the relationships designed for this application.
 ![Project Design](./docs/character_creator_api.drawio.svg)
 
 ## Application requirements
-* Maven 3.8.1
-* Java 11
-* Spring Boot 2.5
+* Maven 3.8
+* Java 17
+* Spring Boot 2.6
 * Docker
 * Docker Compose
 
@@ -22,10 +22,9 @@ Instantiate the database using the following command:
 docker-compose up -d --build
 ```
 
-Run the application using IntelliJ. You can access the application via `localhost:8080`.
+You can use MongoDB Compass to manage and visualize your data during tests.
 
-## Postman Collection
-TODO
+Run the application using IntelliJ. You can access the application via `localhost:8080`.
 
 ## Author
 Vitor Vidal - vitorvidal.dev@gmail.com

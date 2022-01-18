@@ -1,10 +1,5 @@
 package dev.vitorvidal.charactercreator.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
 public class Attribute {
     private int strength;
     private int dexterity;
@@ -13,7 +8,8 @@ public class Attribute {
     private int wisdom;
     private int charisma;
 
-    public Attribute() {}
+    public Attribute() {
+    }
 
     public void updateStrength(int strength) {
         this.strength += strength;
