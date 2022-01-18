@@ -24,7 +24,7 @@ docker-compose up -d --build
 
 You can use MongoDB Compass to manage and visualize your data during tests.
 
-Run the application using IntelliJ. You can access the application via `localhost:8080`.
+Run the application using IntelliJ. You can access the application via `localhost:8080`, or via command line with `mvn spring-boot:run`
 
 ## Author
 Vitor Vidal - vitorvidal.dev@gmail.com
