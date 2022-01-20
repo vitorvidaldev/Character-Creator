@@ -35,21 +35,25 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserVO> getUserById(@PathVariable ObjectId id) {
-        return userService.getUserById(id);
+        UserVO userVO = userService.getUserById(id);
+        return ResponseEntity.ok().body(userVO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/data/{id}")
     public ResponseEntity<UserVO> updateUserData(@PathVariable ObjectId id) {
-        return userService.updateUserData(id);
+        UserVO userVO = userService.updateUserData(id);
+        return ResponseEntity.ok().body(userVO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/password/{id}")
     public ResponseEntity<UserVO> updatePassword(@PathVariable ObjectId id) {
-        return userService.updatePassword(id);
+        UserVO userVO = userService.updatePassword(id);
+        return ResponseEntity.ok().body(userVO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable ObjectId id) {
-        return userService.deleteUser(id);
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }

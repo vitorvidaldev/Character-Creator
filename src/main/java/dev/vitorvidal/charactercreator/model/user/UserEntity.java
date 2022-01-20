@@ -17,4 +17,21 @@ public class UserEntity {
     @NotNull
     private String password;
 
+    public UserEntity(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
