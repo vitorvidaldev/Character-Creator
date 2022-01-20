@@ -1,7 +1,7 @@
 package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.PlayerService;
-import dev.vitorvidal.charactercreator.domain.model.Player;
+import dev.vitorvidal.charactercreator.model.player.PlayerEntity;
 import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/player")
+@RequestMapping("/rest/v1/player")
 public class PlayerController {
 
     private final PlayerService playerService;
@@ -19,27 +19,28 @@ public class PlayerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Player>> getAll() {
-        return playerService.getAll();
+    public ResponseEntity<List<PlayerEntity>> getAllPlayers() {
+        return playerService.getAllPlayers();
     }
 
     @PostMapping
-    public ResponseEntity<Player> createCharacter(@RequestBody Player player) {
-        return playerService.createCharacter(player);
+    public ResponseEntity<PlayerEntity> createPlayer(@RequestBody PlayerEntity playerEntity) {
+        return playerService.createPlayer(playerEntity);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Player> getCharacterById(@PathVariable ObjectId id) {
-        return playerService.getCharacterById(id);
+    public ResponseEntity<PlayerEntity> getPlayerById(@PathVariable ObjectId id) {
+        return playerService.getPlayerById(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Player> updateCharacter(@PathVariable ObjectId id, @RequestBody Player player) {
-        return playerService.updateCharacter(id, player);
+    public ResponseEntity<PlayerEntity> updatePlayer(@PathVariable ObjectId id,
+                                                     @RequestBody PlayerEntity playerEntity) {
+        return playerService.updatePlayer(id, playerEntity);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteCharacter(@PathVariable ObjectId id) {
-        return playerService.deleteCharacter(id);
+    public ResponseEntity<Void> deletePlayer(@PathVariable ObjectId id) {
+        return playerService.deletePlayer(id);
     }
 }

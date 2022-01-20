@@ -3,7 +3,7 @@ package dev.vitorvidal.charactercreator.application.service;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-class PlayerPlayerServiceTest {
+class PlayerPlayerServiceTestEntity {
 
     @Test
     @Disabled("Not Implemented")

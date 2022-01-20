@@ -1,4 +1,4 @@
-package dev.vitorvidal.charactercreator.domain.model;
+package dev.vitorvidal.charactercreator.model.player;
 
 public enum Job {
     BARBARIAN,

@@ -1,8 +1,8 @@
 package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.charactercreator.domain.model.Attribute;
-import dev.vitorvidal.charactercreator.domain.model.Player;
-import dev.vitorvidal.charactercreator.domain.repository.PlayerRepository;
+import dev.vitorvidal.charactercreator.application.repository.PlayerRepository;
+import dev.vitorvidal.charactercreator.model.player.Attribute;
+import dev.vitorvidal.charactercreator.model.player.PlayerEntity;
 import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,43 +16,44 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
     private final DiceService diceService;
 
-    public PlayerService(PlayerRepository playerRepository, DiceService diceService) {
+    public PlayerService(PlayerRepository playerRepository,
+                         DiceService diceService) {
         this.playerRepository = playerRepository;
         this.diceService = diceService;
     }
 
-    public ResponseEntity<List<Player>> getAll() {
-        List<Player> all = playerRepository.findAll();
-        return ResponseEntity.ok().body(all);
+    public ResponseEntity<List<PlayerEntity>> getAllPlayers() {
+        List<PlayerEntity> playerEntities = playerRepository.findAll();
+        return ResponseEntity.ok().body(playerEntities);
     }
 
-    public ResponseEntity<Player> createCharacter(Player player) {
-        var save = playerRepository.save(player);
-        return ResponseEntity.status(201).body(save);
+    public ResponseEntity<PlayerEntity> createPlayer(PlayerEntity playerEntity) {
+        var savedPlayer = playerRepository.save(playerEntity);
+        return ResponseEntity.status(201).body(savedPlayer);
     }
 
-    public ResponseEntity<Player> getCharacterById(ObjectId id) {
-        Optional<Player> byId = playerRepository.findById(id);
-        if (byId.isEmpty()) {
+    public ResponseEntity<PlayerEntity> getPlayerById(ObjectId id) {
+        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(id);
+        if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
-        return ResponseEntity.ok().body(byId.get());
+        return ResponseEntity.ok().body(optionalPlayer.get());
     }
 
-    public ResponseEntity<Player> updateCharacter(ObjectId id, Player player) {
-        Optional<Player> byId = playerRepository.findById(id);
-        if (byId.isEmpty()) {
+    public ResponseEntity<PlayerEntity> updatePlayer(ObjectId id, PlayerEntity playerEntity) {
+        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(id);
+        if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
-        byId.get().setName(player.getName());
-        byId.get().setAge(player.getAge());
-        byId.get().setRace(player.getRace());
-        byId.get().setJob(player.getJob());
-        var save = playerRepository.save(byId.get());
-        return ResponseEntity.ok().body(save);
+        optionalPlayer.get().setName(playerEntity.getName());
+        optionalPlayer.get().setAge(playerEntity.getAge());
+        optionalPlayer.get().setRace(playerEntity.getRace());
+        optionalPlayer.get().setJob(playerEntity.getJob());
+        var updatedPlayer = playerRepository.save(optionalPlayer.get());
+        return ResponseEntity.ok().body(updatedPlayer);
     }
 
-    public ResponseEntity<Void> deleteCharacter(ObjectId id) {
+    public ResponseEntity<Void> deletePlayer(ObjectId id) {
         playerRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
