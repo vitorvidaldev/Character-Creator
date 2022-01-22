@@ -91,9 +91,8 @@ public class PlayerService {
         );
     }
 
-    public ResponseEntity<Void> deletePlayer(ObjectId id) {
+    public void deletePlayer(ObjectId id) {
         playerRepository.deleteById(id);
-        return ResponseEntity.ok().build();
     }
 
     public Attribute levelUp(String id) {

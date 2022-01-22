@@ -3,6 +3,7 @@ package dev.vitorvidal.charactercreator.application.controller;
 import dev.vitorvidal.charactercreator.application.service.PlayerService;
 import dev.vitorvidal.charactercreator.model.player.CreatePlayerVO;
 import dev.vitorvidal.charactercreator.model.player.PlayerVO;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,8 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class PlayerControllerTest {
@@ -25,10 +25,6 @@ class PlayerControllerTest {
     private PlayerService playerService;
     @InjectMocks
     private PlayerController playerController;
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     void getAllPlayers() {
@@ -67,6 +63,21 @@ class PlayerControllerTest {
 
     @Test
     void getPlayerById() {
+        ObjectId idMock = mock(ObjectId.class);
+        PlayerVO responseMock = mock(PlayerVO.class);
+
+        // when
+        when(playerService.getPlayerById(idMock)).thenReturn(responseMock);
+        // then
+        ResponseEntity<PlayerVO> playerVO = playerController.getPlayerById(idMock);
+        // assert
+        assertNotNull(playerVO);
+        assertNotNull(playerVO.getBody());
+        assertEquals(HttpStatus.OK, playerVO.getStatusCode());
+        assertEquals(responseMock, playerVO.getBody());
+        assertEquals(responseMock.name(), playerVO.getBody().name());
+        assertEquals(responseMock.Id(), playerVO.getBody().Id());
+        assertEquals(responseMock.age(), playerVO.getBody().age());
     }
 
     @Test
@@ -75,5 +86,11 @@ class PlayerControllerTest {
 
     @Test
     void deletePlayer() {
+        ObjectId idMock = mock(ObjectId.class);
+
+        // when
+        doNothing().when(playerService).deletePlayer(idMock);
+        // then
+        playerController.deletePlayer(idMock);
     }
 }

@@ -1,4 +1,4 @@
-package dev.vitorvidal.charactercreator.util;
+package dev.vitorvidal.charactercreator.application.service;
 
 import dev.vitorvidal.charactercreator.application.service.DiceService;
 import org.junit.jupiter.api.Assertions;
@@ -66,6 +66,14 @@ class DiceServiceTest {
         int d20 = dice.d20();
         List<Integer> results = IntStream.rangeClosed(1, 20).boxed().toList();
         Assertions.assertTrue(results.contains(d20));
+    }
+
+    @Test
+    @DisplayName("Returns one of the twenty possible values for a D20")
+    void shouldRollAd100() {
+        int d100 = dice.d100();
+        List<Integer> results = IntStream.rangeClosed(1, 100).boxed().toList();
+        Assertions.assertTrue(results.contains(d100));
     }
 }
 
