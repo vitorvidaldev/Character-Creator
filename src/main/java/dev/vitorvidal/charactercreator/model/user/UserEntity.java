@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 @Document("user")
 public class UserEntity {
-    private ObjectId id;
     @NotNull
     private final String username;
     @NotNull
@@ -16,6 +15,7 @@ public class UserEntity {
     private final String email;
     @NotNull
     private final String password;
+    private ObjectId id;
 
     public UserEntity(String username, String email, String password) {
         this.username = username;

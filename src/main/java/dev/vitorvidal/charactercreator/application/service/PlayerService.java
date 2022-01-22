@@ -3,7 +3,6 @@ package dev.vitorvidal.charactercreator.application.service;
 import dev.vitorvidal.charactercreator.application.repository.PlayerRepository;
 import dev.vitorvidal.charactercreator.model.player.*;
 import org.bson.types.ObjectId;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

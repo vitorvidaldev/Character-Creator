@@ -1,12 +1,10 @@
 package dev.vitorvidal.charactercreator.application.service;
 
-import dev.vitorvidal.charactercreator.application.service.DiceService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class DiceServiceTest {

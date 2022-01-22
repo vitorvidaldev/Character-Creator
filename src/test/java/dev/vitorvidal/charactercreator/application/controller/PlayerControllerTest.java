@@ -3,8 +3,8 @@ package dev.vitorvidal.charactercreator.application.controller;
 import dev.vitorvidal.charactercreator.application.service.PlayerService;
 import dev.vitorvidal.charactercreator.model.player.CreatePlayerVO;
 import dev.vitorvidal.charactercreator.model.player.PlayerVO;
+import dev.vitorvidal.charactercreator.model.player.UpdatePlayerVO;
 import org.bson.types.ObjectId;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class PlayerControllerTest {
     private PlayerController playerController;
 
     @Test
-    void getAllPlayers() {
+    void shouldGetAllPlayers() {
         PlayerVO playerVO = mock(PlayerVO.class);
         List<PlayerVO> playerList = List.of(playerVO);
 
@@ -44,7 +44,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void createPlayer() {
+    void shouldCreatePlayer() {
         CreatePlayerVO reqBody = mock(CreatePlayerVO.class);
         PlayerVO responseObj = mock(PlayerVO.class);
 
@@ -62,7 +62,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void getPlayerById() {
+    void shouldGetPlayerById() {
         ObjectId idMock = mock(ObjectId.class);
         PlayerVO responseMock = mock(PlayerVO.class);
 
@@ -81,16 +81,34 @@ class PlayerControllerTest {
     }
 
     @Test
-    void updatePlayer() {
+    void shouldUpdatePlayer() {
+        ObjectId idMock = mock(ObjectId.class);
+        UpdatePlayerVO updatePlayerMock = mock(UpdatePlayerVO.class);
+        PlayerVO responseMock = mock(PlayerVO.class);
+
+        // when
+        when(playerService.updatePlayer(idMock, updatePlayerMock)).thenReturn(responseMock);
+        // then
+        ResponseEntity<PlayerVO> updatedPlayer = playerController.updatePlayer(idMock, updatePlayerMock);
+        // assert
+        assertNotNull(updatedPlayer);
+        assertNotNull(updatedPlayer.getBody());
+        assertEquals(HttpStatus.OK, updatedPlayer.getStatusCode());
+        assertEquals(responseMock.name(), updatedPlayer.getBody().name());
+        assertEquals(responseMock.Id(), updatedPlayer.getBody().Id());
+        assertEquals(responseMock.age(), updatedPlayer.getBody().age());
     }
 
     @Test
-    void deletePlayer() {
+    void shouldDeletePlayer() {
         ObjectId idMock = mock(ObjectId.class);
 
         // when
         doNothing().when(playerService).deletePlayer(idMock);
         // then
-        playerController.deletePlayer(idMock);
+        ResponseEntity<Void> responseObj = playerController.deletePlayer(idMock);
+        // assert
+        assertNotNull(responseObj);
+        assertEquals(HttpStatus.NO_CONTENT, responseObj.getStatusCode());
     }
 }
