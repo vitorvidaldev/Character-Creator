@@ -26,6 +26,13 @@ You can use MongoDB Compass to manage and visualize your data during tests.
 
 Run the application using IntelliJ. You can access the application via `localhost:8080`, or via command line with `mvn spring-boot:run`
 
+## Tests
+
+Execute the tests running the following command (the command is slightly different in Windows and macOS).
+```
+mvn clean install && google-chrome target/site/jacoco/index.html
+```
+
 ## Author
 Vitor Vidal - vitorvidal.dev@gmail.com
 

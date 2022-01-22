@@ -10,12 +10,12 @@ import javax.validation.constraints.NotNull;
 public class UserEntity {
     private ObjectId id;
     @NotNull
-    private String username;
+    private final String username;
     @NotNull
     @Email
-    private String email;
+    private final String email;
     @NotNull
-    private String password;
+    private final String password;
 
     public UserEntity(String username, String email, String password) {
         this.username = username;
