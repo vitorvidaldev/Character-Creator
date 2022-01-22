@@ -37,16 +37,25 @@ public class PlayerEntity {
         this.attribute = attribute;
     }
 
-    public PlayerEntity(String name,
-                        int age,
-                        Attribute attribute,
-                        Race race,
-                        Job job) {
+    public PlayerEntity(
+            String name,
+            int age,
+            Attribute attribute,
+            Race race,
+            Job job) {
         this.name = name;
         this.age = age;
         this.attribute = attribute;
         this.race = race;
         this.job = job;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public Attribute getAttribute() {
+        return attribute;
     }
 
     public String getName() {

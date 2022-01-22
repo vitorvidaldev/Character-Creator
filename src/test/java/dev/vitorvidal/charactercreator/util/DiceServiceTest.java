@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class DiceServiceTests {
+class DiceServiceTest {
     private final DiceService dice = new DiceService();
 
     @Test
-    @DisplayName("Tests if the method returns one of the three possible values for a D3")
+    @DisplayName("Returns one of the three possible values for a D3")
     void shouldRollAd3() {
         int d3 = dice.d3();
         List<Integer> results = IntStream.rangeClosed(1, 3).boxed().collect(Collectors.toList());
@@ -21,7 +21,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the four possible values for a D4")
+    @DisplayName("Returns one of the four possible values for a D4")
     void shouldRollAd4() {
         int d4 = dice.d4();
         List<Integer> results = IntStream.rangeClosed(1, 4).boxed().collect(Collectors.toList());
@@ -29,7 +29,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the six possible values for a D6")
+    @DisplayName("Returns one of the six possible values for a D6")
     void shouldRollAd6() {
         int d6 = dice.d6();
         List<Integer> results = IntStream.rangeClosed(1, 6).boxed().collect(Collectors.toList());
@@ -37,7 +37,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the eight possible values for a D8")
+    @DisplayName("Returns one of the eight possible values for a D8")
     void shouldRollAd8() {
         int d8 = dice.d8();
         List<Integer> results = IntStream.rangeClosed(1, 8).boxed().collect(Collectors.toList());
@@ -45,7 +45,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the ten possible values for a D10")
+    @DisplayName("Returns one of the ten possible values for a D10")
     void shouldRollAd10() {
         int d10 = dice.d10();
         List<Integer> results = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
@@ -53,7 +53,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the twelve possible values for a D12")
+    @DisplayName("Returns one of the twelve possible values for a D12")
     void shouldRollAd12() {
         int d12 = dice.d12();
         List<Integer> results = IntStream.rangeClosed(1, 12).boxed().collect(Collectors.toList());
@@ -61,7 +61,7 @@ class DiceServiceTests {
     }
 
     @Test
-    @DisplayName("Tests if the method returns one of the twenty possible values for a D20")
+    @DisplayName("Returns one of the twenty possible values for a D20")
     void shouldRollAd20() {
         int d20 = dice.d20();
         List<Integer> results = IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList());
