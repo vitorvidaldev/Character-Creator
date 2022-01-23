@@ -4,6 +4,7 @@ import dev.vitorvidal.charactercreator.application.repository.PlayerRepository;
 import dev.vitorvidal.charactercreator.model.player.CreatePlayerVO;
 import dev.vitorvidal.charactercreator.model.player.PlayerEntity;
 import dev.vitorvidal.charactercreator.model.player.PlayerVO;
+import dev.vitorvidal.charactercreator.model.player.UpdatePlayerVO;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,10 +17,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 class PlayerServiceTest {
@@ -74,36 +75,59 @@ class PlayerServiceTest {
     }
 
     @Test
-    void shouldThrowNullPointerExceptionLookingForPlayerById() {
+    void shouldThrowNoSuchElementExceptionLookingForPlayerById() {
         ObjectId idMock = mock(ObjectId.class);
-        PlayerEntity playerEntityMock = mock(PlayerEntity.class);
         // when
         when(playerRepository.findById(idMock))
                 .thenReturn(Optional.empty());
         // then
-        NoSuchElementException exception = assertThrows(NoSuchElementException.class,
+        NoSuchElementException exception = assertThrows(
+                NoSuchElementException.class,
                 () -> playerService.getPlayerById(idMock));
         // assert
-        assertEquals(NoSuchElementException.class ,exception.getClass());
+        assertEquals(NoSuchElementException.class, exception.getClass());
     }
 
     @Test
-    void updatePlayer() {
-
+    void shouldUpdatePlayer() {
+        ObjectId idMock = mock(ObjectId.class);
+        UpdatePlayerVO updatePlayerMock = mock(UpdatePlayerVO.class);
+        PlayerEntity playerEntityMock = mock(PlayerEntity.class);
         // when
+        when(playerRepository.findById(idMock))
+                .thenReturn(Optional.ofNullable(playerEntityMock));
+        when(playerRepository.save(any())).thenReturn(playerEntityMock);
         // then
+        PlayerVO responseObj = playerService.updatePlayer(idMock, updatePlayerMock);
         // assert
+        assertNotNull(responseObj);
+    }
+
+    @Test
+    void shouldThrowNoSuchElementExceptionUpdatingPlayer() {
+        ObjectId idMock = mock(ObjectId.class);
+        UpdatePlayerVO updatePlayerMock = mock(UpdatePlayerVO.class);
+        PlayerEntity playerEntityMock = mock(PlayerEntity.class);
+        // when
+        when(playerRepository.findById(idMock))
+                .thenReturn(Optional.empty());
+        when(playerRepository.save(any())).thenReturn(playerEntityMock);
+        // then
+        NoSuchElementException exception = assertThrows(
+                NoSuchElementException.class,
+                () -> playerService.updatePlayer(idMock, updatePlayerMock)
+        );
+        // assert
+        assertEquals(NoSuchElementException.class, exception.getClass());
     }
 
     @Test
     void deletePlayer() {
-
+        ObjectId idMock = mock(ObjectId.class);
         // when
+        doNothing().when(playerRepository).deleteById(idMock);
         // then
         // assert
-    }
-
-    @Test
-    void levelUp() {
+        assertThatCode(() -> playerService.deletePlayer(idMock)).doesNotThrowAnyException();
     }
 }
