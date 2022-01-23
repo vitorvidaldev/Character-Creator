@@ -122,7 +122,7 @@ class PlayerServiceTest {
     }
 
     @Test
-    void deletePlayer() {
+    void shouldDeletePlayer() {
         ObjectId idMock = mock(ObjectId.class);
         // when
         doNothing().when(playerRepository).deleteById(idMock);
