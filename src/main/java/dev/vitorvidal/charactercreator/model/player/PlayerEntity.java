@@ -24,34 +24,12 @@ public class PlayerEntity {
         this.age = age;
     }
 
-    public PlayerEntity(String name, int age, Race race, Job job) {
-        this.name = name;
-        this.age = age;
-        this.race = race;
-        this.job = job;
-    }
-
-    public PlayerEntity(String name, int age, Attribute attribute) {
-        this.name = name;
-        this.age = age;
-        this.attribute = attribute;
-    }
-
-    public PlayerEntity(
-            String name,
-            int age,
-            Attribute attribute,
-            Race race,
-            Job job) {
-        this.name = name;
-        this.age = age;
-        this.attribute = attribute;
-        this.race = race;
-        this.job = job;
-    }
-
     public ObjectId getId() {
         return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public Attribute getAttribute() {
