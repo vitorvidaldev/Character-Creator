@@ -57,6 +57,7 @@ public class UserService {
     }
 
     public UserVO updateUserData(ObjectId id) {
+        // TODO update user data
         Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
 
         if (optionalUserEntity.isPresent()) {
@@ -69,6 +70,7 @@ public class UserService {
     }
 
     public UserVO updatePassword(ObjectId id) {
+        // TODO update user password
         Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
 
         if (optionalUserEntity.isPresent()) {

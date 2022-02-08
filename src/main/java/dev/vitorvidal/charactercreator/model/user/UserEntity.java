@@ -23,6 +23,10 @@ public class UserEntity {
         this.password = password;
     }
 
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
     public ObjectId getId() {
         return id;
     }
