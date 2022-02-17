@@ -4,8 +4,8 @@ import dev.vitorvidal.charactercreator.application.repository.UserRepository;
 import dev.vitorvidal.charactercreator.model.user.SignupVO;
 import dev.vitorvidal.charactercreator.model.user.UserEntity;
 import dev.vitorvidal.charactercreator.model.user.UserVO;
-import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@Slf4j
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -25,33 +25,25 @@ public class UserService {
 
     public List<UserVO> getAllUsers() {
         List<UserEntity> userEntityList = userRepository.findAll();
-
         List<UserVO> userResponseList = new ArrayList<>();
         for (UserEntity userEntity : userEntityList) {
-            userResponseList.add(new UserVO(userEntity.getId(),
-                    userEntity.getUsername(),
-                    userEntity.getEmail()));
+            userResponseList.add(modelMapper.map(userEntity, UserVO.class));
         }
-
         return userResponseList;
     }
 
     public UserVO signup(SignupVO signupVO) {
-        UserEntity userEntity = userRepository.save(
-                new UserEntity(signupVO.username(),
-                        signupVO.email(),
-                        signupVO.password()));
-
-        return new UserVO(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail());
+        UserEntity userEntity = userRepository.save(modelMapper.map(signupVO, UserEntity.class));
+        return modelMapper.map(userEntity, UserVO.class);
     }
 
     public UserVO getUserById(ObjectId id) {
         Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
-            return new UserVO(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail());
+            return modelMapper.map(userEntity, UserVO.class);
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
             throw new NoSuchElementException();
         }
     }
@@ -62,9 +54,9 @@ public class UserService {
 
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
-            return new UserVO(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail());
+            return modelMapper.map(userEntity, UserVO.class);
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
             throw new NoSuchElementException();
         }
     }
@@ -77,7 +69,7 @@ public class UserService {
             UserEntity userEntity = optionalUserEntity.get();
             return new UserVO(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
             throw new NoSuchElementException();
         }
     }
@@ -88,7 +80,7 @@ public class UserService {
         if (optionalUserEntity.isPresent()) {
             userRepository.delete(optionalUserEntity.get());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
             throw new NoSuchElementException();
         }
     }

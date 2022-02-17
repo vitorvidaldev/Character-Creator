@@ -3,6 +3,7 @@ package dev.vitorvidal.charactercreator.application.service;
 import dev.vitorvidal.charactercreator.application.repository.PlayerRepository;
 import dev.vitorvidal.charactercreator.model.player.*;
 import org.bson.types.ObjectId;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Optional;
 public class PlayerService {
     private final PlayerRepository playerRepository;
     private final DiceService diceService;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     public PlayerService(
             PlayerRepository playerRepository,
@@ -27,31 +29,14 @@ public class PlayerService {
 
         List<PlayerVO> playerList = new ArrayList<>();
         for (PlayerEntity playerEntity : playerEntities) {
-            playerList.add(new PlayerVO(
-                    playerEntity.getId(),
-                    playerEntity.getName(),
-                    playerEntity.getAge(),
-                    playerEntity.getAttribute(),
-                    playerEntity.getRace(),
-                    playerEntity.getJob()
-            ));
+            playerList.add(modelMapper.map(playerEntity, PlayerVO.class));
         }
         return playerList;
     }
 
     public PlayerVO createPlayer(CreatePlayerVO createPlayerVO) {
-        PlayerEntity savedPlayer = playerRepository.save(new PlayerEntity(
-                createPlayerVO.name(),
-                createPlayerVO.age()
-        ));
-        return new PlayerVO(
-                savedPlayer.getId(),
-                savedPlayer.getName(),
-                savedPlayer.getAge(),
-                savedPlayer.getAttribute(),
-                savedPlayer.getRace(),
-                savedPlayer.getJob()
-        );
+        PlayerEntity savedPlayer = playerRepository.save(modelMapper.map(createPlayerVO, PlayerEntity.class));
+        return modelMapper.map(savedPlayer, PlayerVO.class);
     }
 
     public PlayerVO getPlayerById(ObjectId id) {
@@ -59,14 +44,7 @@ public class PlayerService {
         if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
-        return new PlayerVO(
-                optionalPlayer.get().getId(),
-                optionalPlayer.get().getName(),
-                optionalPlayer.get().getAge(),
-                optionalPlayer.get().getAttribute(),
-                optionalPlayer.get().getRace(),
-                optionalPlayer.get().getJob()
-        );
+        return modelMapper.map(optionalPlayer.get(), PlayerVO.class);
     }
 
     public PlayerVO updatePlayer(ObjectId id, UpdatePlayerVO updatePlayerVO) {
@@ -80,14 +58,7 @@ public class PlayerService {
         optionalPlayer.get().setJob(updatePlayerVO.job());
         PlayerEntity updatedPlayer = playerRepository.save(optionalPlayer.get());
 
-        return new PlayerVO(
-                updatedPlayer.getId(),
-                updatedPlayer.getName(),
-                updatedPlayer.getAge(),
-                updatedPlayer.getAttribute(),
-                updatedPlayer.getRace(),
-                updatedPlayer.getJob()
-        );
+        return modelMapper.map(updatedPlayer, PlayerVO.class);
     }
 
     public void deletePlayer(ObjectId id) {
