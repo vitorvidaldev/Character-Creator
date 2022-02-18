@@ -13,6 +13,8 @@ The following diagram describes the relationships designed for this application.
 
 You can call a service to obtain a die roll. 
 
+![Dices](./docs/dice.jpg)
+
 The dice available are:
 * D3
 * D4
