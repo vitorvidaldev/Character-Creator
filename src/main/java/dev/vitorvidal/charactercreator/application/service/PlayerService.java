@@ -52,6 +52,7 @@ public class PlayerService {
         if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
+
         optionalPlayer.get().setName(updatePlayerVO.name());
         optionalPlayer.get().setAge(updatePlayerVO.age());
         optionalPlayer.get().setRace(updatePlayerVO.race());
@@ -74,7 +75,6 @@ public class PlayerService {
         attribute.updateCharisma(diceService.d3());
         attribute.updateIntelligence(diceService.d3());
         attribute.updateWisdom(diceService.d3());
-
         return attribute;
     }
 }

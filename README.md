@@ -9,6 +9,20 @@ The following diagram describes the relationships designed for this application.
 
 ![Project Design](./docs/character_creator_api.drawio.svg)
 
+### Roll the dice feature
+
+You can call a service to obtain a die roll. 
+
+The dice available are:
+* D3
+* D4
+* D6
+* D8
+* D10
+* D12
+* D20
+* D100
+
 ## Application requirements
 * Maven 3.8
 * Java 17
