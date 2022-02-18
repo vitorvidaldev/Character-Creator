@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class DiceServiceTest {
     private final DiceService dice = new DiceService();
 
@@ -15,7 +17,9 @@ class DiceServiceTest {
     void shouldRollAd3() {
         int d3 = dice.d3();
         List<Integer> results = IntStream.rangeClosed(1, 3).boxed().toList();
-        Assertions.assertTrue(results.contains(d3));
+        assertTrue(results.contains(d3));
+        assertTrue(d3 > 0);
+        assertTrue(d3 <= 3);
     }
 
     @Test
@@ -23,7 +27,9 @@ class DiceServiceTest {
     void shouldRollAd4() {
         int d4 = dice.d4();
         List<Integer> results = IntStream.rangeClosed(1, 4).boxed().toList();
-        Assertions.assertTrue(results.contains(d4));
+        assertTrue(results.contains(d4));
+        assertTrue(d4 > 0);
+        assertTrue(d4 <= 4);
     }
 
     @Test
@@ -31,7 +37,9 @@ class DiceServiceTest {
     void shouldRollAd6() {
         int d6 = dice.d6();
         List<Integer> results = IntStream.rangeClosed(1, 6).boxed().toList();
-        Assertions.assertTrue(results.contains(d6));
+        assertTrue(results.contains(d6));
+        assertTrue(d6 > 0);
+        assertTrue(d6 <= 6);
     }
 
     @Test
@@ -39,7 +47,9 @@ class DiceServiceTest {
     void shouldRollAd8() {
         int d8 = dice.d8();
         List<Integer> results = IntStream.rangeClosed(1, 8).boxed().toList();
-        Assertions.assertTrue(results.contains(d8));
+        assertTrue(results.contains(d8));
+        assertTrue(d8 > 0);
+        assertTrue(d8 <= 8);
     }
 
     @Test
@@ -47,7 +57,9 @@ class DiceServiceTest {
     void shouldRollAd10() {
         int d10 = dice.d10();
         List<Integer> results = IntStream.rangeClosed(1, 10).boxed().toList();
-        Assertions.assertTrue(results.contains(d10));
+        assertTrue(results.contains(d10));
+        assertTrue(d10 > 0);
+        assertTrue(d10 <= 10);
     }
 
     @Test
@@ -55,7 +67,9 @@ class DiceServiceTest {
     void shouldRollAd12() {
         int d12 = dice.d12();
         List<Integer> results = IntStream.rangeClosed(1, 12).boxed().toList();
-        Assertions.assertTrue(results.contains(d12));
+        assertTrue(results.contains(d12));
+        assertTrue(d12 > 0);
+        assertTrue(d12 <= 12);
     }
 
     @Test
@@ -63,7 +77,9 @@ class DiceServiceTest {
     void shouldRollAd20() {
         int d20 = dice.d20();
         List<Integer> results = IntStream.rangeClosed(1, 20).boxed().toList();
-        Assertions.assertTrue(results.contains(d20));
+        assertTrue(results.contains(d20));
+        assertTrue(d20 > 0);
+        assertTrue(d20 <= 20);
     }
 
     @Test
@@ -71,7 +87,9 @@ class DiceServiceTest {
     void shouldRollAd100() {
         int d100 = dice.d100();
         List<Integer> results = IntStream.rangeClosed(1, 100).boxed().toList();
-        Assertions.assertTrue(results.contains(d100));
+        assertTrue(results.contains(d100));
+        assertTrue(d100 > 0);
+        assertTrue(d100 <= 100);
     }
 }
 
