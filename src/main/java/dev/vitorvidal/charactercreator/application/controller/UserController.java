@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/rest/v1/user")
@@ -19,12 +18,6 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<UserVO>> getAllUsers() {
-        List<UserVO> users = userService.getAllUsers();
-        return ResponseEntity.ok().body(users);
     }
 
     @PostMapping

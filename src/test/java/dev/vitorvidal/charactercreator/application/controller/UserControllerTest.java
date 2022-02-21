@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -24,23 +22,6 @@ class UserControllerTest {
     private UserService userService;
     @InjectMocks
     private UserController userController;
-
-    @Test
-    void shouldGetAllUsers() {
-        UserVO userVoMock = mock(UserVO.class);
-        List<UserVO> userListMock = List.of(userVoMock);
-
-        // when
-        when(userService.getAllUsers()).thenReturn(userListMock);
-        // then
-        ResponseEntity<List<UserVO>> allUsers = userController.getAllUsers();
-        // assert
-        assertNotNull(allUsers);
-        assertNotNull(allUsers.getBody());
-        assertEquals(HttpStatus.OK, allUsers.getStatusCode());
-        assertEquals(userListMock.size(), allUsers.getBody().size());
-        assertEquals(userVoMock, allUsers.getBody().get(0));
-    }
 
     @Test
     void shouldSignup() {

@@ -13,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -25,23 +23,6 @@ class PlayerControllerTest {
     private PlayerService playerService;
     @InjectMocks
     private PlayerController playerController;
-
-    @Test
-    void shouldGetAllPlayers() {
-        PlayerVO playerVO = mock(PlayerVO.class);
-        List<PlayerVO> playerList = List.of(playerVO);
-
-        // when
-        when(playerService.getAllPlayers()).thenReturn(playerList);
-        // then
-        ResponseEntity<List<PlayerVO>> responseList = playerController.getAllPlayers();
-        // assert
-        assertNotNull(responseList);
-        assertNotNull(responseList.getBody());
-        assertEquals(HttpStatus.OK, responseList.getStatusCode());
-        assertEquals(responseList.getBody().size(), playerList.size());
-        assertEquals(responseList.getBody().get(0), playerVO);
-    }
 
     @Test
     void shouldCreatePlayer() {

@@ -4,19 +4,12 @@ Character Creator API for tabletop RPGs.
 
 ## API Description
 
-This API lets you create a character for tabletop RPGs, loosely based on D&D 5e and Pillars of Eternity.
+This API lets you create a character for tabletop RPGs, loosely based on D&D 5e
+and Pillars of Eternity.
 
 The following diagram describes the relationships designed for this application.
 
 ![Project Design](./docs/character_creator_api.drawio.svg)
-
-### Roll the dice feature
-
-You can call a service to obtain a die roll.
-
-The dice available are D3, D4, D6, D8, D10, D12, D20, D100.
-
-<img src="./docs/dice.jpg" width="300" alt="Dices">
 
 ## Application requirements
 
@@ -36,12 +29,35 @@ docker-compose up -d --build
 
 You can use MongoDB Compass to manage and visualize your data during tests.
 
-Run the application using IntelliJ. You can access the application via `localhost:8080`, or via command line
-with `mvn spring-boot:run`
+Run the application using IntelliJ. You can access the application
+via `localhost:8080`, or via command line with `mvn spring-boot:run`
+
+## Features
+
+### Dice Rolls feature
+
+- You can roll a D3, D4, D6, D10, D12, D20, and D100 dices.
+
+### User feature
+
+- Create new user, with username, email, and password.
+- Retrieve user data.
+- Allow users to change their username.
+- Allow users to change their password.
+- Allow users to delete their account.
+
+### Player feature
+
+- Allow a user to create a new player character.
+- Allow a user to retrieve their player characters data.
+- Allow a user to retrieve one of their player characters data.
+- Allow a user to update their player character.
+- Allow a user to delete their player character.
 
 ## Tests
 
-Execute the tests running the following command (the command is slightly different in Windows and macOS).
+Execute the tests running the following command (the command is slightly
+different in Windows and macOS).
 
 ```
 mvn clean install && google-chrome target/site/jacoco/index.html
