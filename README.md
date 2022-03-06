@@ -1,28 +1,11 @@
 # Character Creator API
 
 This API lets you create a character for tabletop RPGs, loosely based on D&D 5e
-and Pillars of Eternity.
-
-## Application requirements
-
-* Maven 3
+and Pillars of Eternity. The API was developed with:
 * Java 17
-* Spring Boot 2.6
+* Spring
 * Docker Compose
 * MongoDB
-
-## How to execute the application
-
-Instantiate the database using the following command:
-
-```
-docker-compose up -d --build
-```
-
-You can use MongoDB Compass to manage and visualize your data during tests.
-
-Run the application using IntelliJ. You can access the application
-via `localhost:8080`, or via command line with `mvn spring-boot:run`
 
 ## Features
 
@@ -46,13 +29,31 @@ via `localhost:8080`, or via command line with `mvn spring-boot:run`
 - Allow a user to update their player character.
 - Allow a user to delete their player character.
 
-## Tests
-
-Execute the tests running the following command (the command is slightly
-different in Windows and macOS).
+## How to execute the application
+To set up the database, run:
 
 ```
-mvn clean install && google-chrome target/site/jacoco/index.html
+docker-compose up -d --build
+```
+
+You need to create a keyspace with the name *pet_management_api* in the Cassandra database, after the containers are running.
+
+Download the project dependencies with the following command:
+
+```
+mvn clean install
+```
+
+Execute the following command to run the application:
+
+```
+mvn spring-boot:run
+```
+
+Execute the application tests with the following command:
+
+```
+mvn test
 ```
 
 ## Author
