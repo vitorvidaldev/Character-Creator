@@ -1,23 +1,15 @@
 # Character Creator API
 
-Character Creator API for tabletop RPGs.
-
-## API Description
-
 This API lets you create a character for tabletop RPGs, loosely based on D&D 5e
 and Pillars of Eternity.
 
-The following diagram describes the relationships designed for this application.
-
-![Project Design](./docs/character_creator_api.drawio.svg)
-
 ## Application requirements
 
-* Maven 3.8
+* Maven 3
 * Java 17
 * Spring Boot 2.6
-* Docker
 * Docker Compose
+* MongoDB
 
 ## How to execute the application
 
