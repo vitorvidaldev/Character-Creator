@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   mongo:
-    image: mongo:5.0.3
+    image: mongo:5.0.6
     restart: always
     ports:
       - "27017:27017"
@@ -12,7 +12,7 @@ services:
       - character-creator-network
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:0.54.0
     restart: always
     ports:
       - "8081:8081"
