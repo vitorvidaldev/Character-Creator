@@ -2,8 +2,9 @@ package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.UserService;
 import dev.vitorvidal.charactercreator.model.user.SignupVO;
+import dev.vitorvidal.charactercreator.model.user.UpdateUserDataVO;
+import dev.vitorvidal.charactercreator.model.user.UpdateUserPasswordVO;
 import dev.vitorvidal.charactercreator.model.user.UserVO;
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,14 +35,18 @@ public class UserController {
     }
 
     @PutMapping("/data/{userId}")
-    public ResponseEntity<UserVO> updateUserData(@PathVariable(value = "userId") UUID userId) {
-        UserVO userVO = userService.updateUserData(userId);
+    public ResponseEntity<UserVO> updateUserData(
+            @PathVariable(value = "userId") UUID userId,
+            @RequestBody @Valid UpdateUserDataVO updateUserDataVO) {
+        UserVO userVO = userService.updateUserData(userId, updateUserDataVO);
         return ResponseEntity.ok().body(userVO);
     }
 
     @PutMapping("/password/{userId}")
-    public ResponseEntity<UserVO> updatePassword(@PathVariable(value = "userId") UUID userId) {
-        UserVO userVO = userService.updatePassword(userId);
+    public ResponseEntity<UserVO> updatePassword(
+            @PathVariable(value = "userId") UUID userId,
+            @RequestBody @Valid UpdateUserPasswordVO updateUserPasswordVO) {
+        UserVO userVO = userService.updatePassword(userId, updateUserPasswordVO);
         return ResponseEntity.ok().body(userVO);
     }
 

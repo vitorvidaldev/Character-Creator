@@ -2,8 +2,9 @@ package dev.vitorvidal.charactercreator.application.controller;
 
 import dev.vitorvidal.charactercreator.application.service.UserService;
 import dev.vitorvidal.charactercreator.model.user.SignupVO;
+import dev.vitorvidal.charactercreator.model.user.UpdateUserDataVO;
+import dev.vitorvidal.charactercreator.model.user.UpdateUserPasswordVO;
 import dev.vitorvidal.charactercreator.model.user.UserVO;
-import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -64,12 +65,13 @@ class UserControllerTest {
     @Test
     void shouldUpdateUserData() {
         UserVO userMock = mock(UserVO.class);
+        UpdateUserDataVO updateUserDataVOMock = mock(UpdateUserDataVO.class);
         UUID userIdMock = UUID.randomUUID();
 
         // when
-        when(userService.updateUserData(userIdMock)).thenReturn(userMock);
+        when(userService.updateUserData(userIdMock, updateUserDataVOMock)).thenReturn(userMock);
         // then
-        ResponseEntity<UserVO> updatedUser = userController.updateUserData(userIdMock);
+        ResponseEntity<UserVO> updatedUser = userController.updateUserData(userIdMock, updateUserDataVOMock);
         // assert
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());
@@ -82,12 +84,13 @@ class UserControllerTest {
     @Test
     void shouldUpdatePassword() {
         UserVO userMock = mock(UserVO.class);
+        UpdateUserPasswordVO updateUserPasswordVOMock = mock(UpdateUserPasswordVO.class);
         UUID userIdMock = UUID.randomUUID();
 
         // when
-        when(userService.updatePassword(userIdMock)).thenReturn(userMock);
+        when(userService.updatePassword(userIdMock, updateUserPasswordVOMock)).thenReturn(userMock);
         // then
-        ResponseEntity<UserVO> updatedUser = userController.updatePassword(userIdMock);
+        ResponseEntity<UserVO> updatedUser = userController.updatePassword(userIdMock, updateUserPasswordVOMock);
         // assert
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());

@@ -1,14 +1,17 @@
 package dev.vitorvidal.charactercreator.application.service;
 
 import dev.vitorvidal.charactercreator.application.repository.UserRepository;
-import dev.vitorvidal.charactercreator.model.user.SignupVO;
-import dev.vitorvidal.charactercreator.model.user.UserEntity;
-import dev.vitorvidal.charactercreator.model.user.UserVO;
-import org.bson.types.ObjectId;
+import dev.vitorvidal.charactercreator.model.user.*;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.UUID;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -38,36 +41,36 @@ public class UserService {
                     userEntity.getUsername(),
                     userEntity.getEmail());
         } else {
-//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
-            throw new NoSuchElementException();
+            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
 
-    public UserVO updateUserData(UUID id) {
-        // TODO update user data
+    public UserVO updateUserData(UUID id, UpdateUserDataVO updateUserDataVO) {
         Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
 
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
-            return new UserVO(
-                    userEntity.getUserId(),
-                    userEntity.getUsername(),
-                    userEntity.getEmail());
-        } else {
-//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
-            throw new NoSuchElementException();
-        }
-    }
+            userEntity.setUsername(updateUserDataVO.getUsername());
+            userRepository.save(userEntity);
 
-    public UserVO updatePassword(UUID id) {
-        // TODO update user password
-        Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
-
-        if (optionalUserEntity.isPresent()) {
-            UserEntity userEntity = optionalUserEntity.get();
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
-//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+    }
+
+    public UserVO updatePassword(UUID id, UpdateUserPasswordVO updateUserPasswordVO) {
+        Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
+
+        if (optionalUserEntity.isPresent()) {
+            UserEntity userEntity = optionalUserEntity.get();
+            userEntity.setPassword(updateUserPasswordVO.getPassword());
+            userRepository.save(userEntity);
+            return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
+        } else {
+            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
             throw new NoSuchElementException();
         }
     }
