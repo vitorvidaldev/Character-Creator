@@ -5,7 +5,7 @@ and Pillars of Eternity. The API was developed with:
 * Java 17
 * Spring
 * Docker Compose
-* MongoDB
+* MongoDB 5.0
 
 ## Features
 

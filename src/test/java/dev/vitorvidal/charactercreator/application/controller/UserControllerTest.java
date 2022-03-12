@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -36,73 +38,73 @@ class UserControllerTest {
         assertNotNull(signup);
         assertNotNull(signup.getBody());
         assertEquals(HttpStatus.CREATED, signup.getStatusCode());
-        assertEquals(userMock.id(), signup.getBody().id());
-        assertEquals(userMock.username(), signup.getBody().username());
-        assertEquals(userMock.email(), signup.getBody().email());
+        assertEquals(userMock.getId(), signup.getBody().getId());
+        assertEquals(userMock.getUsername(), signup.getBody().getUsername());
+        assertEquals(userMock.getEmail(), signup.getBody().getEmail());
     }
 
     @Test
     void shouldGetUserById() {
         UserVO userMock = mock(UserVO.class);
-        ObjectId idMock = mock(ObjectId.class);
+        UUID userIdMock = UUID.randomUUID();
 
         // when
-        when(userService.getUserById(idMock)).thenReturn(userMock);
+        when(userService.getUserById(userIdMock)).thenReturn(userMock);
         // then
-        ResponseEntity<UserVO> responseUser = userController.getUserById(idMock);
+        ResponseEntity<UserVO> responseUser = userController.getUserById(userIdMock);
         // assert
         assertNotNull(responseUser);
         assertNotNull(responseUser.getBody());
         assertEquals(HttpStatus.OK, responseUser.getStatusCode());
-        assertEquals(userMock.id(), responseUser.getBody().id());
-        assertEquals(userMock.username(), responseUser.getBody().username());
-        assertEquals(userMock.email(), responseUser.getBody().email());
+        assertEquals(userMock.getId(), responseUser.getBody().getId());
+        assertEquals(userMock.getUsername(), responseUser.getBody().getUsername());
+        assertEquals(userMock.getEmail(), responseUser.getBody().getEmail());
     }
 
     @Test
     void shouldUpdateUserData() {
         UserVO userMock = mock(UserVO.class);
-        ObjectId idMock = mock(ObjectId.class);
+        UUID userIdMock = UUID.randomUUID();
 
         // when
-        when(userService.updateUserData(idMock)).thenReturn(userMock);
+        when(userService.updateUserData(userIdMock)).thenReturn(userMock);
         // then
-        ResponseEntity<UserVO> updatedUser = userController.updateUserData(idMock);
+        ResponseEntity<UserVO> updatedUser = userController.updateUserData(userIdMock);
         // assert
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());
         assertEquals(HttpStatus.OK, updatedUser.getStatusCode());
-        assertEquals(userMock.id(), updatedUser.getBody().id());
-        assertEquals(userMock.username(), updatedUser.getBody().username());
-        assertEquals(userMock.email(), updatedUser.getBody().email());
+        assertEquals(userMock.getId(), updatedUser.getBody().getId());
+        assertEquals(userMock.getUsername(), updatedUser.getBody().getUsername());
+        assertEquals(userMock.getEmail(), updatedUser.getBody().getEmail());
     }
 
     @Test
     void shouldUpdatePassword() {
         UserVO userMock = mock(UserVO.class);
-        ObjectId idMock = mock(ObjectId.class);
+        UUID userIdMock = UUID.randomUUID();
 
         // when
-        when(userService.updatePassword(idMock)).thenReturn(userMock);
+        when(userService.updatePassword(userIdMock)).thenReturn(userMock);
         // then
-        ResponseEntity<UserVO> updatedUser = userController.updatePassword(idMock);
+        ResponseEntity<UserVO> updatedUser = userController.updatePassword(userIdMock);
         // assert
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());
         assertEquals(HttpStatus.OK, updatedUser.getStatusCode());
-        assertEquals(userMock.id(), updatedUser.getBody().id());
-        assertEquals(userMock.username(), updatedUser.getBody().username());
-        assertEquals(userMock.email(), updatedUser.getBody().email());
+        assertEquals(userMock.getId(), updatedUser.getBody().getId());
+        assertEquals(userMock.getUsername(), updatedUser.getBody().getUsername());
+        assertEquals(userMock.getEmail(), updatedUser.getBody().getEmail());
     }
 
     @Test
     void shouldDeleteUser() {
-        ObjectId idMock = mock(ObjectId.class);
+        UUID userIdMock = UUID.randomUUID();
 
         // when
-        doNothing().when(userService).deleteUser(idMock);
+        doNothing().when(userService).deleteUser(userIdMock);
         // then
-        ResponseEntity<Void> responseObj = userController.deleteUser(idMock);
+        ResponseEntity<Void> responseObj = userController.deleteUser(userIdMock);
 
         assertNotNull(responseObj);
         assertEquals(HttpStatus.NO_CONTENT, responseObj.getStatusCode());

@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,23 +30,6 @@ class UserServiceTest {
     private UserRepository userRepository;
 
     @Test
-    void shouldGetAllUsersCorrectly() {
-        UserEntity userEntityMock = mock(UserEntity.class);
-        List<UserEntity> userListMock = new ArrayList<>();
-        userListMock.add(userEntityMock);
-        // when
-        when(userRepository.findAll()).thenReturn(userListMock);
-        // then
-        List<UserVO> allUsers = userService.getAllUsers();
-        // assert
-        assertNotNull(allUsers);
-        assertEquals(ArrayList.class, allUsers.getClass());
-        UserVO userVO = allUsers.get(0);
-        assertNotNull(userVO);
-        assertEquals(UserVO.class, userVO.getClass());
-    }
-
-    @Test
     @Disabled("User Entity is returning null, for some reason")
     void shouldSignupCorrectly() {
         UserEntity userEntityMock = new UserEntity(
@@ -53,7 +37,7 @@ class UserServiceTest {
                 "test@test.com",
                 "password"
         );
-        userEntityMock.setId(ObjectId.get());
+        userEntityMock.setUserId(UUID.randomUUID());
         SignupVO signupMock = new SignupVO(
                 "test",
                 "test@test.com",
