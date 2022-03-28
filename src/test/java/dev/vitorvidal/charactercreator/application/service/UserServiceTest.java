@@ -18,7 +18,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {
-
     @InjectMocks
     private UserService userService;
     @Mock
