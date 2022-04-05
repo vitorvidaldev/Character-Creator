@@ -3,7 +3,7 @@ package dev.vitorvidal.charactercreator.model.player;
 public record UpdatePlayerVO(
         String name,
         int age,
-        Attribute attribute,
+        AttributeOld attributeOld,
         Race race,
         Job job
 ) {
