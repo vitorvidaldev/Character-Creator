@@ -1,10 +1,16 @@
 package dev.vitorvidal.charactercreator.model.user;
 
-import org.bson.types.ObjectId;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record UserVO(
-        ObjectId id,
-        String username,
-        String email
-) {
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserVO {
+    private UUID id;
+    private String username;
+    private String email;
 }

@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.model.player;
 
-public class Attribute {
+public class AttributeOld {
     private int strength;
     private int dexterity;
     private int constitution;
@@ -8,7 +8,7 @@ public class Attribute {
     private int wisdom;
     private int charisma;
 
-    public Attribute() {
+    public AttributeOld() {
     }
 
     public void updateStrength(int strength) {
