@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/rest/v1/player")
+@RequestMapping("/rest/v1/players")
 public class PlayerController {
     private final PlayerService playerService;
 
