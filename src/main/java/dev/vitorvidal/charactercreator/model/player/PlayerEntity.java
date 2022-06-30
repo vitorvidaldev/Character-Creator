@@ -12,7 +12,7 @@ public class PlayerEntity {
     private String name;
     @NotNull
     private int age;
-    private AttributeOld attributeOld;
+    private AttributeVO attributeVO; // TODO
     private Race race;
     private Job job;
 
@@ -30,10 +30,6 @@ public class PlayerEntity {
 
     public void setId(ObjectId id) {
         this.id = id;
-    }
-
-    public AttributeOld getAttribute() {
-        return attributeOld;
     }
 
     public String getName() {

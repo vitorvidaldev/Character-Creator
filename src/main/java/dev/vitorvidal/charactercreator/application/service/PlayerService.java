@@ -66,15 +66,8 @@ public class PlayerService {
         playerRepository.deleteById(id);
     }
 
-    public AttributeOld levelUp(String id) {
-        AttributeOld attributeOld = new AttributeOld();
-
-        attributeOld.updateStrength(diceService.d3());
-        attributeOld.updateDexterity(diceService.d3());
-        attributeOld.updateConstitution(diceService.d3());
-        attributeOld.updateCharisma(diceService.d3());
-        attributeOld.updateIntelligence(diceService.d3());
-        attributeOld.updateWisdom(diceService.d3());
-        return attributeOld;
+    public AttributeVO levelUp(String playerId) {
+        // TODO
+        return null;
     }
 }
