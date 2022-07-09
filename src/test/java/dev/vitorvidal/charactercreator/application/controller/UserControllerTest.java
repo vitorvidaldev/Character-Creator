@@ -39,9 +39,9 @@ class UserControllerTest {
         assertNotNull(signup);
         assertNotNull(signup.getBody());
         assertEquals(HttpStatus.CREATED, signup.getStatusCode());
-        assertEquals(userMock.getId(), signup.getBody().getId());
-        assertEquals(userMock.getUsername(), signup.getBody().getUsername());
-        assertEquals(userMock.getEmail(), signup.getBody().getEmail());
+        assertEquals(userMock.userId(), signup.getBody().userId());
+        assertEquals(userMock.username(), signup.getBody().username());
+        assertEquals(userMock.email(), signup.getBody().email());
     }
 
     @Test
@@ -57,9 +57,9 @@ class UserControllerTest {
         assertNotNull(responseUser);
         assertNotNull(responseUser.getBody());
         assertEquals(HttpStatus.OK, responseUser.getStatusCode());
-        assertEquals(userMock.getId(), responseUser.getBody().getId());
-        assertEquals(userMock.getUsername(), responseUser.getBody().getUsername());
-        assertEquals(userMock.getEmail(), responseUser.getBody().getEmail());
+        assertEquals(userMock.userId(), responseUser.getBody().userId());
+        assertEquals(userMock.username(), responseUser.getBody().username());
+        assertEquals(userMock.email(), responseUser.getBody().email());
     }
 
     @Test
@@ -76,9 +76,9 @@ class UserControllerTest {
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());
         assertEquals(HttpStatus.OK, updatedUser.getStatusCode());
-        assertEquals(userMock.getId(), updatedUser.getBody().getId());
-        assertEquals(userMock.getUsername(), updatedUser.getBody().getUsername());
-        assertEquals(userMock.getEmail(), updatedUser.getBody().getEmail());
+        assertEquals(userMock.userId(), updatedUser.getBody().userId());
+        assertEquals(userMock.username(), updatedUser.getBody().username());
+        assertEquals(userMock.email(), updatedUser.getBody().email());
     }
 
     @Test
@@ -95,9 +95,9 @@ class UserControllerTest {
         assertNotNull(updatedUser);
         assertNotNull(updatedUser.getBody());
         assertEquals(HttpStatus.OK, updatedUser.getStatusCode());
-        assertEquals(userMock.getId(), updatedUser.getBody().getId());
-        assertEquals(userMock.getUsername(), updatedUser.getBody().getUsername());
-        assertEquals(userMock.getEmail(), updatedUser.getBody().getEmail());
+        assertEquals(userMock.userId(), updatedUser.getBody().userId());
+        assertEquals(userMock.username(), updatedUser.getBody().username());
+        assertEquals(userMock.email(), updatedUser.getBody().email());
     }
 
     @Test

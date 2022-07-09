@@ -25,8 +25,8 @@ public record UserService(UserRepository userRepository) {
                 userEntity.getEmail());
     }
 
-    public UserVO getUserById(UUID id) {
-        Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
+    public UserVO getUserById(UUID userId) {
+        Optional<UserEntity> optionalUserEntity = userRepository.findById(userId);
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
             return new UserVO(
@@ -34,7 +34,7 @@ public record UserService(UserRepository userRepository) {
                     userEntity.getUsername(),
                     userEntity.getEmail());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            log.error("[UserService] Could not find a user with the given userId. Id: {}", userId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
