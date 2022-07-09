@@ -12,17 +12,8 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class PlayerService {
-    private final PlayerRepository playerRepository;
-    private final DiceService diceService;
-    private final ModelMapper modelMapper = new ModelMapper();
-
-    public PlayerService(
-            PlayerRepository playerRepository,
-            DiceService diceService) {
-        this.playerRepository = playerRepository;
-        this.diceService = diceService;
-    }
+public record PlayerService(PlayerRepository playerRepository, DiceService diceService) {
+    private static final ModelMapper modelMapper = new ModelMapper();
 
     public List<PlayerVO> getAllPlayers() {
         List<PlayerEntity> playerEntities = playerRepository.findAll();

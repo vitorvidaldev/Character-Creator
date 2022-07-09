@@ -3,7 +3,7 @@ package dev.vitorvidal.charactercreator.application.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DiceService {
+public record DiceService() {
     private int PRNG(int ceil) {
         return (((ceil - 1) * 13) + 3) % 7;
     }

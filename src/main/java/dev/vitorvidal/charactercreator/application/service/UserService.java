@@ -7,19 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
 @Service
-public class UserService {
-
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+public record UserService(UserRepository userRepository) {
 
     public UserVO signup(SignupVO signupVO) {
         UserEntity userEntity = userRepository.save(new UserEntity(
@@ -71,18 +64,16 @@ public class UserService {
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
             log.error("[UserService] Could not find a user with the given id. Id: {}", id);
-            throw new NoSuchElementException();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
 
     public void deleteUser(UUID id) {
         Optional<UserEntity> optionalUserEntity = userRepository.findById(id);
-
         if (optionalUserEntity.isPresent()) {
             userRepository.delete(optionalUserEntity.get());
         } else {
-//            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
-            throw new NoSuchElementException();
+            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
         }
     }
 }

@@ -14,14 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/rest/v1/users")
-public class UserController {
-
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
+public record UserController(UserService userService) {
     @PostMapping
     public ResponseEntity<UserVO> signup(@RequestBody @Valid SignupVO signupVO) {
         UserVO userVO = userService.signup(signupVO);

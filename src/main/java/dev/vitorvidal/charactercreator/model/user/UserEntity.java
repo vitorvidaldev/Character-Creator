@@ -2,6 +2,7 @@ package dev.vitorvidal.charactercreator.model.user;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import javax.validation.constraints.Email;
@@ -18,7 +19,7 @@ public class UserEntity {
     private String email;
     @NotNull
     private String password;
-    @MongoId
+    @MongoId(FieldType.STRING)
     private UUID userId;
 
     public UserEntity() {

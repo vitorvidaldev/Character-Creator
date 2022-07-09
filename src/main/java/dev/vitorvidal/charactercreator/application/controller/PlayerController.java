@@ -11,13 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/v1/players")
-public class PlayerController {
-    private final PlayerService playerService;
-
-    public PlayerController(PlayerService playerService) {
-        this.playerService = playerService;
-    }
-
+public record PlayerController(PlayerService playerService) {
     @PostMapping
     public ResponseEntity<PlayerVO> createPlayer(
             @RequestBody CreatePlayerVO createPlayerVO) {
