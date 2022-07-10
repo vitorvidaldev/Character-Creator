@@ -42,6 +42,8 @@ class UserControllerTest {
         assertEquals(userMock.userId(), signup.getBody().userId());
         assertEquals(userMock.username(), signup.getBody().username());
         assertEquals(userMock.email(), signup.getBody().email());
+
+        verify(userService).signup(signupMock);
     }
 
     @Test
@@ -60,6 +62,8 @@ class UserControllerTest {
         assertEquals(userMock.userId(), responseUser.getBody().userId());
         assertEquals(userMock.username(), responseUser.getBody().username());
         assertEquals(userMock.email(), responseUser.getBody().email());
+
+        verify(userService).getUserById(userIdMock);
     }
 
     @Test
@@ -79,6 +83,8 @@ class UserControllerTest {
         assertEquals(userMock.userId(), updatedUser.getBody().userId());
         assertEquals(userMock.username(), updatedUser.getBody().username());
         assertEquals(userMock.email(), updatedUser.getBody().email());
+
+        verify(userService).updateUserData(userIdMock, updateUserDataVOMock);
     }
 
     @Test
@@ -98,6 +104,8 @@ class UserControllerTest {
         assertEquals(userMock.userId(), updatedUser.getBody().userId());
         assertEquals(userMock.username(), updatedUser.getBody().username());
         assertEquals(userMock.email(), updatedUser.getBody().email());
+
+        verify(userService).updatePassword(userIdMock, updateUserPasswordVOMock);
     }
 
     @Test
@@ -111,5 +119,7 @@ class UserControllerTest {
 
         assertNotNull(responseObj);
         assertEquals(HttpStatus.NO_CONTENT, responseObj.getStatusCode());
+
+        verify(userService).deleteUser(userIdMock);
     }
 }
