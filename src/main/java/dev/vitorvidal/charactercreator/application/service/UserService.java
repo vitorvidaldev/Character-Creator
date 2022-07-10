@@ -34,7 +34,7 @@ public record UserService(UserRepository userRepository) {
                     userEntity.getUsername(),
                     userEntity.getEmail());
         } else {
-            log.error("[UserService] Could not find a user with the given userId. Id: {}", userId);
+            log.error("[UserService] Could not find a user with the given userId. playerId: {}", userId);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
@@ -49,7 +49,7 @@ public record UserService(UserRepository userRepository) {
 
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            log.error("[UserService] Could not find a user with the given id. playerId: {}", id);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
@@ -63,7 +63,7 @@ public record UserService(UserRepository userRepository) {
             userRepository.save(userEntity);
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            log.error("[UserService] Could not find a user with the given id. playerId: {}", id);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
     }
@@ -73,7 +73,7 @@ public record UserService(UserRepository userRepository) {
         if (optionalUserEntity.isPresent()) {
             userRepository.delete(optionalUserEntity.get());
         } else {
-            log.error("[UserService] Could not find a user with the given id. Id: {}", id);
+            log.error("[UserService] Could not find a user with the given id. playerId: {}", id);
         }
     }
 }

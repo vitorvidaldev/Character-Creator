@@ -1,9 +1,10 @@
 package dev.vitorvidal.charactercreator.model.player;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 public record PlayerVO(
-        Object Id,
+        UUID playerId,
         @NotNull
         String name,
         @NotNull
