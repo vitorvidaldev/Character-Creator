@@ -27,58 +27,63 @@ class PlayerControllerTest {
 
     @Test
     void shouldCreatePlayer() {
-        CreatePlayerVO reqBody = mock(CreatePlayerVO.class);
-        PlayerVO responseObj = mock(PlayerVO.class);
+        CreatePlayerVO createPlayerVOMock = mock(CreatePlayerVO.class);
+        PlayerVO playerVOMock = mock(PlayerVO.class);
 
-        // when
-        when(playerService.createPlayer(reqBody)).thenReturn(responseObj);
-        // then
-        ResponseEntity<PlayerVO> createdPlayer = playerController.createPlayer(reqBody);
-        // assert
-        assertNotNull(createdPlayer);
-        assertNotNull(createdPlayer.getBody());
-        assertEquals(HttpStatus.CREATED, createdPlayer.getStatusCode());
-        assertEquals(responseObj, createdPlayer.getBody());
-        assertEquals(responseObj.name(), createdPlayer.getBody().name());
-        assertEquals(responseObj.age(), createdPlayer.getBody().age());
+        when(playerService.createPlayer(createPlayerVOMock)).thenReturn(playerVOMock);
+
+        ResponseEntity<PlayerVO> response = playerController.createPlayer(createPlayerVOMock);
+
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(playerVOMock, response.getBody());
+        assertEquals(playerVOMock.name(), response.getBody().name());
+        assertEquals(playerVOMock.age(), response.getBody().age());
+
+        verify(playerService).createPlayer(createPlayerVOMock);
     }
 
     @Test
     void shouldGetPlayerById() {
         UUID playerIdMock = UUID.randomUUID();
-        PlayerVO responseMock = mock(PlayerVO.class);
+        PlayerVO playerVOMock = mock(PlayerVO.class);
 
         // when
-        when(playerService.getPlayerById(playerIdMock)).thenReturn(responseMock);
+        when(playerService.getPlayerById(playerIdMock)).thenReturn(playerVOMock);
         // then
-        ResponseEntity<PlayerVO> playerVO = playerController.getPlayerById(playerIdMock);
+        ResponseEntity<PlayerVO> response = playerController.getPlayerById(playerIdMock);
         // assert
-        assertNotNull(playerVO);
-        assertNotNull(playerVO.getBody());
-        assertEquals(HttpStatus.OK, playerVO.getStatusCode());
-        assertEquals(responseMock, playerVO.getBody());
-        assertEquals(responseMock.name(), playerVO.getBody().name());
-        assertEquals(responseMock.playerId(), playerVO.getBody().playerId());
-        assertEquals(responseMock.age(), playerVO.getBody().age());
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(playerVOMock, response.getBody());
+        assertEquals(playerVOMock.name(), response.getBody().name());
+        assertEquals(playerVOMock.playerId(), response.getBody().playerId());
+        assertEquals(playerVOMock.age(), response.getBody().age());
+
+        verify(playerService).getPlayerById(playerIdMock);
     }
 
     @Test
     void shouldUpdatePlayer() {
         UUID playerIdMock = UUID.randomUUID();
-        UpdatePlayerVO updatePlayerMock = mock(UpdatePlayerVO.class);
-        PlayerVO responseMock = mock(PlayerVO.class);
+        UpdatePlayerVO updatePlayerVOMock = mock(UpdatePlayerVO.class);
+        PlayerVO playerVOMock = mock(PlayerVO.class);
 
         // when
-        when(playerService.updatePlayer(playerIdMock, updatePlayerMock)).thenReturn(responseMock);
+        when(playerService.updatePlayer(playerIdMock, updatePlayerVOMock)).thenReturn(playerVOMock);
         // then
-        ResponseEntity<PlayerVO> updatedPlayer = playerController.updatePlayer(playerIdMock, updatePlayerMock);
+        ResponseEntity<PlayerVO> response = playerController.updatePlayer(playerIdMock, updatePlayerVOMock);
         // assert
-        assertNotNull(updatedPlayer);
-        assertNotNull(updatedPlayer.getBody());
-        assertEquals(HttpStatus.OK, updatedPlayer.getStatusCode());
-        assertEquals(responseMock.name(), updatedPlayer.getBody().name());
-        assertEquals(responseMock.playerId(), updatedPlayer.getBody().playerId());
-        assertEquals(responseMock.age(), updatedPlayer.getBody().age());
+        assertNotNull(response);
+        assertNotNull(response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(playerVOMock.name(), response.getBody().name());
+        assertEquals(playerVOMock.playerId(), response.getBody().playerId());
+        assertEquals(playerVOMock.age(), response.getBody().age());
+
+        verify(playerService).updatePlayer(playerIdMock, updatePlayerVOMock);
     }
 
     @Test
@@ -88,9 +93,11 @@ class PlayerControllerTest {
         // when
         doNothing().when(playerService).deletePlayer(playerIdMock);
         // then
-        ResponseEntity<Void> responseObj = playerController.deletePlayer(playerIdMock);
+        ResponseEntity<Void> response = playerController.deletePlayer(playerIdMock);
         // assert
-        assertNotNull(responseObj);
-        assertEquals(HttpStatus.NO_CONTENT, responseObj.getStatusCode());
+        assertNotNull(response);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+
+        verify(playerService).deletePlayer(playerIdMock);
     }
 }
