@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.model.player;
 
-public enum Race {
+public enum RaceEnum {
     AASIMAR,
     DRAGONBORN,
     DWARF,

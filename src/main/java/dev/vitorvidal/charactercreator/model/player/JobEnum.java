@@ -1,6 +1,6 @@
 package dev.vitorvidal.charactercreator.model.player;
 
-public enum Job {
+public enum JobEnum {
     BARBARIAN,
     BARD,
     CLERIC,

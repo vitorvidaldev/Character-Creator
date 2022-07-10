@@ -6,6 +6,12 @@ public record CreatePlayerVO(
         @NotNull
         String name,
         @NotNull
-        int age
+        int age,
+        @NotNull
+        AttributeVO attributes,
+        @NotNull
+        RaceEnum race,
+        @NotNull
+        JobEnum job
 ) {
 }

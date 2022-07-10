@@ -1,66 +1,35 @@
 package dev.vitorvidal.charactercreator.model.player;
 
-import org.bson.types.ObjectId;
+import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
+@Data
 @Document("player")
 public class PlayerEntity {
-    private ObjectId id;
+    @MongoId(FieldType.STRING)
+    private UUID playerId;
     @NotNull
     private String name;
     @NotNull
     private int age;
-    private AttributeVO attributeVO; // TODO
-    private Race race;
-    private Job job;
+    private AttributeVO attributes;
+    private RaceEnum race;
+    private JobEnum job;
 
     public PlayerEntity() {
     }
 
-    public PlayerEntity(String name, int age) {
+    public PlayerEntity(String name, int age, AttributeVO attributes, RaceEnum race, JobEnum job) {
+        this.playerId = UUID.randomUUID();
         this.name = name;
         this.age = age;
-    }
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
+        this.attributes = attributes;
         this.race = race;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
         this.job = job;
     }
 }

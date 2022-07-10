@@ -10,7 +10,7 @@ public record PlayerVO(
         int age,
         @NotNull
         AttributeVO attributeVO,
-        Race race,
-        Job job
+        RaceEnum race,
+        JobEnum job
 ) {
 }

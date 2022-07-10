@@ -2,18 +2,12 @@ package dev.vitorvidal.charactercreator.application.service;
 
 import dev.vitorvidal.charactercreator.application.repository.PlayerRepository;
 import dev.vitorvidal.charactercreator.model.player.*;
-import org.bson.types.ObjectId;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public record PlayerService(PlayerRepository playerRepository, DiceService diceService) {
-    private static final ModelMapper modelMapper = new ModelMapper();
 
     public List<PlayerVO> getAllPlayers() {
         List<PlayerEntity> playerEntities = playerRepository.findAll();
@@ -30,16 +24,16 @@ public record PlayerService(PlayerRepository playerRepository, DiceService diceS
         return modelMapper.map(savedPlayer, PlayerVO.class);
     }
 
-    public PlayerVO getPlayerById(ObjectId id) {
-        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(id);
+    public PlayerVO getPlayerById(UUID playerId) {
+        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(playerId);
         if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
         return modelMapper.map(optionalPlayer.get(), PlayerVO.class);
     }
 
-    public PlayerVO updatePlayer(ObjectId id, UpdatePlayerVO updatePlayerVO) {
-        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(id);
+    public PlayerVO updatePlayer(UUID playerId, UpdatePlayerVO updatePlayerVO) {
+        Optional<PlayerEntity> optionalPlayer = playerRepository.findById(playerId);
         if (optionalPlayer.isEmpty()) {
             throw new NoSuchElementException();
         }
@@ -53,8 +47,8 @@ public record PlayerService(PlayerRepository playerRepository, DiceService diceS
         return modelMapper.map(updatedPlayer, PlayerVO.class);
     }
 
-    public void deletePlayer(ObjectId id) {
-        playerRepository.deleteById(id);
+    public void deletePlayer(UUID playerId) {
+        playerRepository.deleteById(playerId);
     }
 
     public AttributeVO levelUp(String playerId) {

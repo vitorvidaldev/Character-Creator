@@ -4,7 +4,7 @@ public record UpdatePlayerVO(
         String name,
         int age,
         AttributeVO attributeVO,
-        Race race,
-        Job job
+        RaceEnum race,
+        JobEnum job
 ) {
 }

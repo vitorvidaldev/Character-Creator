@@ -56,7 +56,7 @@ class PlayerServiceTest {
         // assert
         assertNotNull(responsePlayer);
         assertThat(responsePlayer).isExactlyInstanceOf(PlayerVO.class);
-        assertEquals(playerEntityMock.getId(), responsePlayer.Id());
+        assertEquals(playerEntityMock.getPlayerId(), responsePlayer.Id());
         assertEquals(playerEntityMock.getName(), responsePlayer.name());
         assertEquals(playerEntityMock.getAge(), responsePlayer.age());
     }
