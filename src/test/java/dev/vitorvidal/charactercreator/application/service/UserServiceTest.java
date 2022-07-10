@@ -118,7 +118,7 @@ class UserServiceTest {
         UpdateUserDataVO updateUserDataVOMock = mock(UpdateUserDataVO.class);
         UserEntity userEntityMock = mock(UserEntity.class);
 
-        when(updateUserDataVOMock.getUsername()).thenReturn(usernameMock);
+        when(updateUserDataVOMock.username()).thenReturn(usernameMock);
         when(userEntityMock.getUserId()).thenReturn(userIdMock);
         when(userEntityMock.getUsername()).thenReturn(usernameMock);
         when(userEntityMock.getEmail()).thenReturn(emailMock);
@@ -133,7 +133,7 @@ class UserServiceTest {
         assertEquals(usernameMock, userVO.username());
         assertEquals(emailMock, userVO.email());
 
-        verify(updateUserDataVOMock).getUsername();
+        verify(updateUserDataVOMock).username();
         verify(userEntityMock).getUserId();
         verify(userEntityMock).getUsername();
         verify(userEntityMock).getEmail();
@@ -171,7 +171,7 @@ class UserServiceTest {
         UpdateUserPasswordVO updateUserPasswordVOMock = mock(UpdateUserPasswordVO.class);
         UserEntity userEntityMock = mock(UserEntity.class);
 
-        when(updateUserPasswordVOMock.getPassword()).thenReturn(passwordMock);
+        when(updateUserPasswordVOMock.password()).thenReturn(passwordMock);
         when(userEntityMock.getUserId()).thenReturn(userIdMock);
         when(userEntityMock.getUsername()).thenReturn(usernameMock);
         when(userEntityMock.getEmail()).thenReturn(emailMock);
@@ -186,7 +186,7 @@ class UserServiceTest {
         assertEquals(usernameMock, userVO.username());
         assertEquals(emailMock, userVO.email());
 
-        verify(updateUserPasswordVOMock).getPassword();
+        verify(updateUserPasswordVOMock).password();
         verify(userEntityMock).getUserId();
         verify(userEntityMock).getUsername();
         verify(userEntityMock).getEmail();

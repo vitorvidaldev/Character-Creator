@@ -44,7 +44,7 @@ public record UserService(UserRepository userRepository) {
 
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
-            userEntity.setUsername(updateUserDataVO.getUsername());
+            userEntity.setUsername(updateUserDataVO.username());
             userRepository.save(userEntity);
 
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
@@ -59,7 +59,7 @@ public record UserService(UserRepository userRepository) {
 
         if (optionalUserEntity.isPresent()) {
             UserEntity userEntity = optionalUserEntity.get();
-            userEntity.setPassword(updateUserPasswordVO.getPassword());
+            userEntity.setPassword(updateUserPasswordVO.password());
             userRepository.save(userEntity);
             return new UserVO(userEntity.getUserId(), userEntity.getUsername(), userEntity.getEmail());
         } else {
